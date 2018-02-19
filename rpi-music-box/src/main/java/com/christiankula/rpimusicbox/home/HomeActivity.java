@@ -23,12 +23,6 @@ public class HomeActivity extends AppCompatActivity implements HomeMvp.View {
         super.onCreate(savedInstanceState);
 
         ((RPiMusicBoxApplication) getApplication()).getComponent().inject(this);
-
-        try {
-            display.display("Create");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -49,5 +43,24 @@ public class HomeActivity extends AppCompatActivity implements HomeMvp.View {
     @Override
     public void setPresenter(HomeMvp.Presenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void displayAdvertisingSuccess() {
+        try {
+            this.display.display("Ad O");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void displayAdvertisingFailure() {
+        try {
+            this.display.display("Ad X");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
