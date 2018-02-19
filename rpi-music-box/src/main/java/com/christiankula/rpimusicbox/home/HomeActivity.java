@@ -11,10 +11,12 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements HomeMvp.View {
 
     @Inject
     AlphanumericDisplay display;
+
+    private HomeMvp.Presenter presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,5 +29,25 @@ public class HomeActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        this.presenter.onViewAttached(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        this.presenter.onViewDetached();
+    }
+
+    @Inject
+    @Override
+    public void setPresenter(HomeMvp.Presenter presenter) {
+        this.presenter = presenter;
     }
 }
