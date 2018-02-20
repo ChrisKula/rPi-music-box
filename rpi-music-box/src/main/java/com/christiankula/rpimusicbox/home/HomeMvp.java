@@ -5,14 +5,13 @@ import com.christiankula.rpimusicbox.mvp.BasePresenter;
 import com.christiankula.rpimusicbox.mvp.BaseView;
 import com.google.android.gms.nearby.connection.ConnectionLifecycleCallback;
 import com.google.android.gms.nearby.connection.PayloadCallback;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 
 public interface HomeMvp {
 
     interface Model {
 
-        void startAdvertising(ConnectionLifecycleCallback cb, OnSuccessListener<Void> onSuccessListener, OnFailureListener onFailureListener);
+        void startAdvertising(ConnectionLifecycleCallback clcb, OnCompleteListener<Void> onCompleteListener);
 
         void stopAdvertising();
 
@@ -21,9 +20,11 @@ public interface HomeMvp {
 
     interface View extends BaseView<Presenter> {
 
-        void displayAdvertisingSuccess();
+        void showAdvertisingOngoing();
 
-        void displayAdvertisingFailure();
+        void showAdvertisingSuccess();
+
+        void showAdvertisingFailure();
     }
 
     interface Presenter extends BasePresenter<View> {

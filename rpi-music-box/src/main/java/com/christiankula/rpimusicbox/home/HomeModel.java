@@ -5,8 +5,7 @@ import com.google.android.gms.nearby.connection.AdvertisingOptions;
 import com.google.android.gms.nearby.connection.ConnectionLifecycleCallback;
 import com.google.android.gms.nearby.connection.ConnectionsClient;
 import com.google.android.gms.nearby.connection.PayloadCallback;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 
 import javax.inject.Inject;
 
@@ -22,14 +21,13 @@ public class HomeModel implements HomeMvp.Model {
     }
 
     @Override
-    public void startAdvertising(ConnectionLifecycleCallback clcb, OnSuccessListener<Void> onSuccessListener, OnFailureListener onFailureListener) {
+    public void startAdvertising(ConnectionLifecycleCallback clcb, OnCompleteListener<Void> onCompleteListener) {
         //TODO Replace string & BuildConfig.APPLICATION_ID
         this.connectionsClient.startAdvertising("rPi Music Box",
                 BuildConfig.APPLICATION_ID,
                 clcb,
                 advertisingOptions)
-                .addOnSuccessListener(onSuccessListener)
-                .addOnFailureListener(onFailureListener);
+                .addOnCompleteListener(onCompleteListener);
     }
 
     @Override

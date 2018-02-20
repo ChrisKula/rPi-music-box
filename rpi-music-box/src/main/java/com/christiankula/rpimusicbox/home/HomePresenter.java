@@ -9,12 +9,12 @@ import com.google.android.gms.nearby.connection.ConnectionsStatusCodes;
 import com.google.android.gms.nearby.connection.Payload;
 import com.google.android.gms.nearby.connection.PayloadCallback;
 import com.google.android.gms.nearby.connection.PayloadTransferUpdate;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import javax.inject.Inject;
 
-public class HomePresenter implements HomeMvp.Presenter, OnSuccessListener<Void>, OnFailureListener {
+public class HomePresenter implements HomeMvp.Presenter, OnCompleteListener<Void> {
 
     private HomeMvp.View view;
 
@@ -69,7 +69,9 @@ public class HomePresenter implements HomeMvp.Presenter, OnSuccessListener<Void>
     public void onViewAttached(HomeMvp.View view) {
         this.view = view;
 
-        this.model.startAdvertising(cb, this, this);
+        this.view.showAdvertisingOngoing();
+
+        this.model.startAdvertising(cb, this);
     }
 
     @Override
@@ -80,13 +82,14 @@ public class HomePresenter implements HomeMvp.Presenter, OnSuccessListener<Void>
     }
 
     @Override
-    public void onSuccess(Void aVoid) {
-        this.view.displayAdvertisingSuccess();
-    }
-
-    @Override
-    public void onFailure(@NonNull Exception e) {
-        this.view.displayAdvertisingFailure();
-        e.printStackTrace();
+    public void onComplete(@NonNull Task<Void> task) {
+        if (task.isSuccessful()) {
+            this.view.showAdvertisingSuccess();
+        } else {
+            this.view.showAdvertisingFailure();
+            if (task.getException() != null) {
+                task.getException().printStackTrace();
+            }
+        }
     }
 }

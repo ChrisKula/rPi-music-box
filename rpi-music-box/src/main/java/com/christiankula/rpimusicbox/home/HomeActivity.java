@@ -5,16 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.christiankula.rpimusicbox.RPiMusicBoxApplication;
-import com.google.android.things.contrib.driver.ht16k33.AlphanumericDisplay;
-
-import java.io.IOException;
+import com.christiankula.rpimusicbox.rainbowhat.RainbowHatHelper;
 
 import javax.inject.Inject;
 
 public class HomeActivity extends AppCompatActivity implements HomeMvp.View {
 
     @Inject
-    AlphanumericDisplay display;
+    RainbowHatHelper rainbowHatHelper;
 
     private HomeMvp.Presenter presenter;
 
@@ -46,21 +44,19 @@ public class HomeActivity extends AppCompatActivity implements HomeMvp.View {
     }
 
     @Override
-    public void displayAdvertisingSuccess() {
-        try {
-            this.display.display("Ad O");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void showAdvertisingOngoing() {
+        rainbowHatHelper.setBlueLedValue(true);
+        rainbowHatHelper.display("Init");
     }
 
     @Override
-    public void displayAdvertisingFailure() {
-        try {
-            this.display.display("Ad X");
+    public void showAdvertisingSuccess() {
+        rainbowHatHelper.setGreenLedValue(true);
+        rainbowHatHelper.display("Rech");
+    }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void showAdvertisingFailure() {
+        rainbowHatHelper.setRedLedValue(true);
     }
 }
