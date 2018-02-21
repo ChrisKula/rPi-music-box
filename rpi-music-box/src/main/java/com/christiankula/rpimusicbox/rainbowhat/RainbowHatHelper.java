@@ -10,10 +10,14 @@ import com.google.android.things.contrib.driver.rainbowhat.RainbowHat;
 import com.google.android.things.pio.Gpio;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class RainbowHatHelper {
 
     private static final String TAG = RainbowHatHelper.class.getSimpleName();
+
+    private static final int ALPHA_NUMERIC_LENGTH = 4;
 
     private static final int RED_LED = 1;
 
@@ -32,6 +36,8 @@ public class RainbowHatHelper {
     private Gpio greenLed;
 
     private Gpio blueLed;
+
+    private final MessageRoller messageRoller;
 
     public RainbowHatHelper() {
         try {
@@ -65,6 +71,8 @@ public class RainbowHatHelper {
         }
 
         init();
+
+        this.messageRoller = new MessageRoller();
     }
 
     private void init() {
@@ -87,21 +95,29 @@ public class RainbowHatHelper {
     }
 
     /**
-     * Displays the given String on the alphanumeric display. The alphanumeric display can only display the first 4
-     * characters of the given String. If the String is empty or null, clears the display.
+     * Displays the given String on the alphanumeric display. If the given String is longer than 4 characters,the
+     * message will roll automatically. If the String is empty or null, clears the display.
      */
-    public void display(String str) {
-        try {
-            display.display(str);
-        } catch (IOException e) {
-            Log.e(TAG, "Error while displaying on alphanumeric display", e);
+    public void display(String message) {
+        messageRoller.cancel();
 
-            throw new RuntimeException(e);
+        if (message.length() <= ALPHA_NUMERIC_LENGTH) {
+            try {
+                display.display(message);
+            } catch (IOException e) {
+                Log.e(TAG, "Error while displaying on alphanumeric display", e);
+
+                throw new RuntimeException(e);
+            }
+        } else {
+            messageRoller.roll(message);
         }
     }
 
     /**
-     * Displays the given String on the alphanumeric display then clears the display after the given duration.
+     * Displays the given String on the alphanumeric display then clears the display after the given duration. If the
+     * given String is longer than 4 characters,the message will roll automatically. If the String is empty or null,
+     * clears the display immediately.
      */
     public void display(String str, long durationInMillis) {
         if (!str.isEmpty()) {
@@ -122,6 +138,8 @@ public class RainbowHatHelper {
      * Clears the alphanumeric display
      */
     public void clearDisplay() {
+        messageRoller.cancel();
+
         try {
             display.clear();
         } catch (IOException e) {
@@ -160,11 +178,18 @@ public class RainbowHatHelper {
      * All LEDs function as a radio buttons group : only one LED can be turn on at a time. Thus, turning on this LED
      * will turn off the others.
      */
-
     public void setBlueLedValue(boolean turnOn) {
         setLedValue(turnOn, BLUE_LED);
     }
 
+    /**
+     * Turn on or off the given LED
+     * <br/>
+     * <br/>
+     * All LEDs function as a radio buttons group : only one LED can be turn on at a time.
+     *
+     * @param led an int representing an on-board LED
+     */
     private void setLedValue(boolean turnOn, int led) {
         try {
             if (turnOn) {
@@ -208,6 +233,85 @@ public class RainbowHatHelper {
         } catch (IOException e) {
             Log.e(TAG, "Error while changing the LED n°" + led + " state", e);
             throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Class in charge of making a message roll on the alphanumeric display
+     */
+    private class MessageRoller {
+
+        private static final int ROLLING_MESSAGE_PERIOD_MS = 250;
+
+        //4 spaces
+        private static final String SPACES_BETWEEN_ROLLOVER = "    ";
+
+        private int headStartIndex;
+
+        private int headEndIndex;
+
+        private String rollingMessage;
+
+        private Timer timer;
+
+        /**
+         * Rolls the given message on the alphanumeric display
+         */
+        void roll(final String message) {
+            cancel();
+
+            rollingMessage = message + SPACES_BETWEEN_ROLLOVER;
+
+            this.headStartIndex = 0;
+
+            this.timer = new Timer();
+
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    String subMessage;
+
+                    headEndIndex = headStartIndex + ALPHA_NUMERIC_LENGTH;
+
+                    if (headEndIndex <= rollingMessage.length()) {
+                        subMessage = rollingMessage.substring(headStartIndex, headEndIndex);
+                    } else {
+                        headEndIndex = ALPHA_NUMERIC_LENGTH - (rollingMessage.length() - headStartIndex);
+
+                        subMessage = rollingMessage.substring(headStartIndex, rollingMessage.length()) +
+                                rollingMessage.substring(0, headEndIndex + 1);
+                    }
+
+                    try {
+                        display.display(subMessage);
+                    } catch (IOException e) {
+                        Log.e(TAG, "Error while displaying on alphanumeric display", e);
+
+                        throw new RuntimeException(e);
+                    }
+
+                    headStartIndex++;
+
+                    if (headStartIndex >= rollingMessage.length()) {
+                        headStartIndex = 0;
+                    }
+                }
+            }, 0, ROLLING_MESSAGE_PERIOD_MS);
+        }
+
+        void cancel() {
+            if (this.timer != null) {
+                this.timer.cancel();
+                this.timer.purge();
+
+                this.timer = null;
+
+            }
+
+            this.headStartIndex = 0;
+            this.headEndIndex = 0;
+
+            this.rollingMessage = "";
         }
     }
 }
