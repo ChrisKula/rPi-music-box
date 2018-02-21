@@ -26,6 +26,8 @@ final RAINBOW_HAT_DRIVERS_VERSION = "0.9"
 
 final DAGGER_VERSION = "2.14.1"
 
+final NEARBY_VERSION = "11.6.0"
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -39,7 +41,9 @@ dependencies {
     implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
-    implementation "com.google.android.gms:play-services-nearby:11.6.0"
+    //For the time being, Android Things support only version 11.6.0 of Play services
+    //noinspection GradleDependency
+    implementation "com.google.android.gms:play-services-nearby:${NEARBY_VERSION}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

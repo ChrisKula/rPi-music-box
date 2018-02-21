@@ -46,13 +46,23 @@ public class HomeActivity extends AppCompatActivity implements HomeMvp.View {
     @Override
     public void showAdvertisingOngoing() {
         rainbowHatHelper.setBlueLedValue(true);
-        rainbowHatHelper.display("Init");
+        rainbowHatHelper.display("Initialisation");
     }
 
     @Override
     public void showAdvertisingSuccess() {
         rainbowHatHelper.setGreenLedValue(true);
-        rainbowHatHelper.display("Rech");
+        rainbowHatHelper.display("Discovering ...");
+    }
+
+    @Override
+    public void sayHello(String endpointName) {
+        rainbowHatHelper.display("Hello " + endpointName, 5000);
+    }
+
+    @Override
+    public void sayGoodBye(String endpointName) {
+        rainbowHatHelper.display("Goodbye " + endpointName, 5000);
     }
 
     @Override
