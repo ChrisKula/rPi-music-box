@@ -1,1 +1,1 @@
-include ':rpi-music-box'
+include ':rpi-music-box', ':commons'
