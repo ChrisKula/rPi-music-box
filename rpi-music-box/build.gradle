@@ -31,6 +31,8 @@ final NEARBY_VERSION = "11.6.0"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(':commons')
+
     //noinspection GradleCompatible
     implementation "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
 

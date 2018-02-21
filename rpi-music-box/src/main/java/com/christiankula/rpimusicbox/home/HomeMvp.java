@@ -1,8 +1,8 @@
 package com.christiankula.rpimusicbox.home;
 
 
-import com.christiankula.rpimusicbox.mvp.BasePresenter;
-import com.christiankula.rpimusicbox.mvp.BaseView;
+import com.christiankula.commons.mvp.BasePresenter;
+import com.christiankula.commons.mvp.BaseView;
 import com.christiankula.rpimusicbox.nearby.connection.Endpoint;
 import com.google.android.gms.nearby.connection.ConnectionLifecycleCallback;
 import com.google.android.gms.nearby.connection.PayloadCallback;
