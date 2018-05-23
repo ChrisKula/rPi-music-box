@@ -25,3 +25,9 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// For each module
+configure(subprojects.toList()) { project ->
+    // Apply libraries versions config
+    apply from: "${rootProject.projectDir}/dependencies.gradle"
+}

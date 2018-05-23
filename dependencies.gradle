@@ -1,0 +1,39 @@
+ext {
+    librariesVersions = [
+            supportLibrary    : "27.0.2",
+            androidThings     : "0.6.1-devpreview", // Update Play Services when updating Android Things
+            rainbowHatDrivers : "0.9",
+            dagger            : "2.14.1",
+            googlePlayServices: "11.6.0"    //For the time being, Android Things 0.6.1 support only version 11.6.0 of Play services
+    ]
+
+    libraries = [
+            // https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat
+            appCompat        : "com.android.support:appcompat-v7:$librariesVersions.supportLibrary",
+
+            // https://developer.android.com/things/training/first-device/create-studio-project
+            androidThings    : "com.google.android.things:androidthings:$librariesVersions.androidThings",
+
+            // https://github.com/androidthings/contrib-drivers/tree/master/rainbowhat
+            rainbowHatDrivers: "com.google.android.things.contrib:driver-rainbowhat:$librariesVersions.rainbowHatDrivers",
+
+            // https://github.com/google/dagger
+            dagger           : "com.google.dagger:dagger:$librariesVersions.dagger",
+            daggerCompiler   : "com.google.dagger:dagger-compiler:$librariesVersions.dagger",
+
+            // whttps://developers.google.com/nearby/connections/overview
+            nearby           : "com.google.android.gms:play-services-nearby:$librariesVersions.googlePlayServices"
+    ]
+
+    testLibrariesVersions = [
+            junit            : "4.12",
+            androidTestRunner: "1.0.1",
+            espresso         : "3.0.1"
+    ]
+
+    testLibraries = [
+            junit            : "junit:junit:$testLibrariesVersions.junit",
+            androidTestRunner: "com.android.support.test:runner:$testLibrariesVersions.androidTestRunner",
+            espresso         : "com.android.support.test.espresso:espresso-core:$testLibrariesVersions.espresso"
+    ]
+}

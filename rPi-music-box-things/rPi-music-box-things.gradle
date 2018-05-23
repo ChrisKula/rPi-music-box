@@ -18,36 +18,24 @@ android {
     }
 }
 
-final SUPPORT_LIB_VERSION = "27.0.2"
-
-final ANDROID_THINGS_VERSION = "0.6.1-devpreview"
-
-final RAINBOW_HAT_DRIVERS_VERSION = "0.9"
-
-final DAGGER_VERSION = "2.14.1"
-
-final NEARBY_VERSION = "11.6.0"
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':commons')
 
-    //noinspection GradleCompatible
-    implementation "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
+    implementation libraries.appCompat
 
-    compileOnly "com.google.android.things:androidthings:${ANDROID_THINGS_VERSION}"
+    compileOnly libraries.androidThings
 
-    implementation "com.google.android.things.contrib:driver-rainbowhat:${RAINBOW_HAT_DRIVERS_VERSION}"
+    implementation libraries.rainbowHatDrivers
 
-    implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
-    annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+    implementation libraries.dagger
+    annotationProcessor libraries.daggerCompiler
 
-    //For the time being, Android Things support only version 11.6.0 of Play services
-    //noinspection GradleDependency
-    implementation "com.google.android.gms:play-services-nearby:${NEARBY_VERSION}"
+    implementation libraries.nearby
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    // Test dependencies
+    testImplementation testLibraries.junit
+    androidTestImplementation testLibraries.androidTestRunner
+    androidTestImplementation testLibraries.espresso
 }
