@@ -1,7 +1,10 @@
 apply plugin: 'com.android.application'
 
+def gitRevisionShortSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+
 android {
     compileSdkVersion 27
+
     defaultConfig {
         applicationId "com.christiankula.rpimusicbox.things"
         minSdkVersion 26
@@ -10,10 +13,17 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
+        debug {
+            resValue "string", "git_revision_short_sha", "${gitRevisionShortSha}"
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            resValue "string", "git_revision_short_sha", "${gitRevisionShortSha}"
         }
     }
 }
