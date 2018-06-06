@@ -20,6 +20,12 @@ android {
 
     buildTypes {
         debug {
+            def debugSuffix = ".debug"
+
+            versionNameSuffix debugSuffix
+            applicationIdSuffix debugSuffix
+
+            resValue "string", "app_version", "${defaultConfig.versionName}${debugSuffix}"
             resValue "string", "git_revision_short_sha", "${gitRevisionShortSha}"
         }
 
@@ -27,6 +33,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
+            resValue "string", "app_version", "${defaultConfig.versionName}"
             resValue "string", "git_revision_short_sha", "${gitRevisionShortSha}"
         }
     }
