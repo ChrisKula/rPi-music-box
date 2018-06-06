@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.nearby.connection;
+package com.christiankula.rpimusicbox.things.nearby.connection;
 
 public class Endpoint {
 

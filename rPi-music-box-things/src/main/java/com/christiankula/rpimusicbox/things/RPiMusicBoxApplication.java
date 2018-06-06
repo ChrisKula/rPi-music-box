@@ -1,13 +1,13 @@
-package com.christiankula.rpimusicbox;
+package com.christiankula.rpimusicbox.things;
 
 import android.app.Application;
 
-import com.christiankula.rpimusicbox.injection.components.DaggerRPiMusicBoxComponent;
-import com.christiankula.rpimusicbox.injection.components.RPiMusicBoxComponent;
-import com.christiankula.rpimusicbox.injection.modules.ApplicationModule;
-import com.christiankula.rpimusicbox.injection.modules.HomeModule;
-import com.christiankula.rpimusicbox.injection.modules.NearbyModule;
-import com.christiankula.rpimusicbox.injection.modules.RainbowHatPeripheralsModule;
+import com.christiankula.rpimusicbox.things.injection.components.DaggerRPiMusicBoxComponent;
+import com.christiankula.rpimusicbox.things.injection.components.RPiMusicBoxComponent;
+import com.christiankula.rpimusicbox.things.injection.modules.ApplicationModule;
+import com.christiankula.rpimusicbox.things.injection.modules.HomeModule;
+import com.christiankula.rpimusicbox.things.injection.modules.NearbyModule;
+import com.christiankula.rpimusicbox.things.injection.modules.RainbowHatPeripheralsModule;
 
 
 public class RPiMusicBoxApplication extends Application {

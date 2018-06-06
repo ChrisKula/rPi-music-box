@@ -1,7 +1,7 @@
-package com.christiankula.rpimusicbox.injection.modules;
+package com.christiankula.rpimusicbox.things.injection.modules;
 
 
-import com.christiankula.rpimusicbox.rainbowhat.RainbowHatHelper;
+import com.christiankula.rpimusicbox.things.rainbowhat.RainbowHatHelper;
 
 import javax.inject.Singleton;
 

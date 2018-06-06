@@ -1,11 +1,11 @@
-package com.christiankula.rpimusicbox.home;
+package com.christiankula.rpimusicbox.things.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.christiankula.rpimusicbox.RPiMusicBoxApplication;
-import com.christiankula.rpimusicbox.rainbowhat.RainbowHatHelper;
+import com.christiankula.rpimusicbox.things.RPiMusicBoxApplication;
+import com.christiankula.rpimusicbox.things.rainbowhat.RainbowHatHelper;
 
 import javax.inject.Inject;
 

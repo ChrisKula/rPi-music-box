@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.rainbowhat;
+package com.christiankula.rpimusicbox.things.rainbowhat;
 
 import android.os.Handler;
 import android.util.Log;

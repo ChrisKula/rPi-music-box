@@ -1,8 +1,8 @@
-package com.christiankula.rpimusicbox.home;
+package com.christiankula.rpimusicbox.things.home;
 
 import android.support.annotation.NonNull;
 
-import com.christiankula.rpimusicbox.nearby.connection.Endpoint;
+import com.christiankula.rpimusicbox.things.nearby.connection.Endpoint;
 import com.google.android.gms.nearby.connection.ConnectionInfo;
 import com.google.android.gms.nearby.connection.ConnectionLifecycleCallback;
 import com.google.android.gms.nearby.connection.ConnectionResolution;

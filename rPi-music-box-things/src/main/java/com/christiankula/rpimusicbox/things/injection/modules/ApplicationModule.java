@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.injection.modules;
+package com.christiankula.rpimusicbox.things.injection.modules;
 
 import android.content.Context;
 
