@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+def versionMajor = 0
+def versionMinor = 1
+def versionPatch = 0
+
+def gitRevisionShortSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        applicationId "com.christiankula.rpimusicbox.things"
+        minSdkVersion 26
+        targetSdkVersion 27
+        versionCode computeVersionCode(versionMajor, versionMinor, versionPatch)
+        versionName computeVersionName(versionMajor, versionMinor, versionPatch)
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            def debugSuffix = ".debug"
+
+            versionNameSuffix debugSuffix
+            applicationIdSuffix debugSuffix
+
+            resValue "string", "app_version", "${defaultConfig.versionName}${debugSuffix}"
+            resValue "string", "git_revision_short_sha", "${gitRevisionShortSha}"
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            resValue "string", "app_version", "${defaultConfig.versionName}"
+            resValue "string", "git_revision_short_sha", "${gitRevisionShortSha}"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':commons')
+
+    implementation libraries.appCompat
+
+    compileOnly libraries.androidThings
+
+    implementation libraries.rainbowHatDrivers
+
+    implementation libraries.dagger
+    annotationProcessor libraries.daggerCompiler
+
+    implementation libraries.nearby
+
+    // Test dependencies
+    testImplementation testLibraries.junit
+    androidTestImplementation testLibraries.androidTestRunner
+    androidTestImplementation testLibraries.espresso
+}

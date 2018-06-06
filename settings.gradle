@@ -1,1 +1,5 @@
-include ':rpi-music-box', ':commons'
+include ':rPi-music-box-things', ':commons'
+
+rootProject.children.each { subProject ->
+    subProject.buildFileName = "${subProject.name}.gradle"
+}
