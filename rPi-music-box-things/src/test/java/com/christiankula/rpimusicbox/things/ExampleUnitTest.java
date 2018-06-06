@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox;
+package com.christiankula.rpimusicbox.things;
 
 import org.junit.Test;
 

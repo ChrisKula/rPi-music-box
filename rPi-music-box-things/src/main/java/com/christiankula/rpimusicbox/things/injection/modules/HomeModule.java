@@ -1,8 +1,8 @@
-package com.christiankula.rpimusicbox.injection.modules;
+package com.christiankula.rpimusicbox.things.injection.modules;
 
-import com.christiankula.rpimusicbox.home.HomeModel;
-import com.christiankula.rpimusicbox.home.HomeMvp;
-import com.christiankula.rpimusicbox.home.HomePresenter;
+import com.christiankula.rpimusicbox.things.home.HomeModel;
+import com.christiankula.rpimusicbox.things.home.HomeMvp;
+import com.christiankula.rpimusicbox.things.home.HomePresenter;
 import com.google.android.gms.nearby.connection.AdvertisingOptions;
 import com.google.android.gms.nearby.connection.ConnectionsClient;
 

@@ -1,7 +1,7 @@
-package com.christiankula.rpimusicbox.home;
+package com.christiankula.rpimusicbox.things.home;
 
-import com.christiankula.rpimusicbox.BuildConfig;
-import com.christiankula.rpimusicbox.nearby.connection.Endpoint;
+import com.christiankula.rpimusicbox.things.BuildConfig;
+import com.christiankula.rpimusicbox.things.nearby.connection.Endpoint;
 import com.google.android.gms.nearby.connection.AdvertisingOptions;
 import com.google.android.gms.nearby.connection.ConnectionLifecycleCallback;
 import com.google.android.gms.nearby.connection.ConnectionsClient;
