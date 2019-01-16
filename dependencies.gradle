@@ -1,13 +1,12 @@
 ext {
     librariesVersions = [
-            supportLibrary    : "28.0.0",
             androidThings     : "1.0",    // Remember to update Play Services when upgrading Android Things version
-            rainbowHatDrivers : "1.0",
+            constraintLayout  : "1.1.3",
             dagger            : "2.14.1",
             googlePlayServices: "12.0.1", // Android Things 1.0.X ships with Play Services v12.5.0 (https://developer.android.com/things/versions/releases)
-
             kotlin            : "1.3.11",
-            constraintLayout  : "1.1.3"
+            rainbowHatDrivers : "1.0",
+            supportLibrary    : "28.0.0"
     ]
 
     libraries = [
@@ -17,19 +16,21 @@ ext {
             // https://developer.android.com/things/training/first-device/create-studio-project
             androidThings    : "com.google.android.things:androidthings:$librariesVersions.androidThings",
 
-            // https://github.com/androidthings/contrib-drivers/tree/master/rainbowhat
-            rainbowHatDrivers: "com.google.android.things.contrib:driver-rainbowhat:$librariesVersions.rainbowHatDrivers",
+            // https://developer.android.com/reference/android/support/constraint/ConstraintLayout
+            constraintLayout : "com.android.support.constraint:constraint-layout:$librariesVersions.constraintLayout",
 
             // https://github.com/google/dagger
             dagger           : "com.google.dagger:dagger:$librariesVersions.dagger",
             daggerCompiler   : "com.google.dagger:dagger-compiler:$librariesVersions.dagger",
 
-            // whttps://developers.google.com/nearby/connections/overview
-            nearby           : "com.google.android.gms:play-services-nearby:$librariesVersions.googlePlayServices",
-
+            // https://github.com/JetBrains/kotlin
             kotlinStdLib     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$librariesVersions.kotlin",
 
-            constraintLayout : "com.android.support.constraint:constraint-layout:$librariesVersions.constraintLayout"
+            // https://developers.google.com/nearby/connections/overview
+            nearby           : "com.google.android.gms:play-services-nearby:$librariesVersions.googlePlayServices",
+
+            // https://github.com/androidthings/contrib-drivers/tree/master/rainbowhat
+            rainbowHatDrivers: "com.google.android.things.contrib:driver-rainbowhat:$librariesVersions.rainbowHatDrivers"
     ]
 
     testLibrariesVersions = [
