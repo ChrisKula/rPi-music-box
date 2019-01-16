@@ -4,7 +4,7 @@ def versionMajor = 0
 def versionMinor = 1
 def versionPatch = 0
 
-def gitRevisionShortSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+def gitRevisionShortSha = getGitRevisionShortSha()
 
 android {
     compileSdkVersion 28

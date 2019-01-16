@@ -5,3 +5,7 @@ ext.computeVersionCode = { versionMajor, versionMinor, versionPatch ->
 ext.computeVersionName = { versionMajor, versionMinor, versionPatch ->
     return "$versionMajor.$versionMinor.$versionPatch"
 }
+
+ext.getGitRevisionShortSha = {
+    return 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+}
