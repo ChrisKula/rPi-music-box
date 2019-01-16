@@ -1,10 +1,10 @@
 ext {
     librariesVersions = [
             supportLibrary    : "27.0.2",
-            androidThings     : "0.6.1-devpreview", // Update Play Services when updating Android Things
+            androidThings     : "1.0",    // Remember to update Play Services when upgrading Android Things version
             rainbowHatDrivers : "0.9",
             dagger            : "2.14.1",
-            googlePlayServices: "11.6.0"    //For the time being, Android Things 0.6.1 support only version 11.6.0 of Play services
+            googlePlayServices: "12.0.1"  // Android Things 1.0.X ships with Play Services v12.5.0 (https://developer.android.com/things/versions/releases)
     ]
 
     libraries = [
