@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 def versionMajor = 0
 def versionMinor = 1
@@ -49,8 +50,15 @@ dependencies {
 
     implementation libraries.appCompat
 
-    implementation libraries.kotlinStdLib
     implementation libraries.constraintLayout
+
+    implementation libraries.dagger
+    kapt libraries.daggerCompiler
+
+    implementation libraries.daggerAndroidSupport
+    kapt libraries.daggerAndroidProcessor
+
+    implementation libraries.kotlinStdLib
 
     // Test dependencies
     testImplementation testLibraries.junit
