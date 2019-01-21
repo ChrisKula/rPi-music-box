@@ -60,6 +60,8 @@ dependencies {
 
     implementation libraries.kotlinStdLib
 
+    implementation libraries.nearby
+
     // Test dependencies
     testImplementation testLibraries.junit
     androidTestImplementation testLibraries.androidTestRunner
