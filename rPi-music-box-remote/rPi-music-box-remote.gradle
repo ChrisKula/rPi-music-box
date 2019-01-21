@@ -20,6 +20,7 @@ android {
         versionName computeVersionName(versionMajor, versionMinor, versionPatch)
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {

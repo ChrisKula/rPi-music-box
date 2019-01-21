@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">rPi Music Box Remote</string>
+
+    <!-- Start Music Box Discovery -->
+    <string name="start_music_box_discovery_main_description">Play music on a nearby rPi music box!</string>
+    <string name="start_music_box_discovery_sub_description">Search a nearby rPi music box</string>
+
+    <string name="start_music_box_discovery_button_search">Search</string>
 </resources>
