@@ -62,6 +62,10 @@ dependencies {
 
     implementation libraries.nearby
 
+    implementation libraries.rxJava2
+    implementation libraries.rxJava2Android
+    implementation libraries.rxJava2Kotlin
+
     // Test dependencies
     testImplementation testLibraries.junit
     androidTestImplementation testLibraries.androidTestRunner

@@ -7,6 +7,9 @@ ext {
             googlePlayServices  : "12.0.1", // Android Things 1.0.X ships with Play Services v12.5.0 (https://developer.android.com/things/versions/releases)
             kotlin              : "1.3.11",
             rainbowHatDrivers   : "1.0",
+            rxJava2             : "2.2.5",
+            rxJava2Android      : "2.1.0",
+            rxJava2Kotlin       : "2.3.0",
             supportLibrary      : "28.0.0"
     ]
 
@@ -37,7 +40,16 @@ ext {
             nearby                : "com.google.android.gms:play-services-nearby:$librariesVersions.googlePlayServices",
 
             // https://github.com/androidthings/contrib-drivers/tree/master/rainbowhat
-            rainbowHatDrivers     : "com.google.android.things.contrib:driver-rainbowhat:$librariesVersions.rainbowHatDrivers"
+            rainbowHatDrivers     : "com.google.android.things.contrib:driver-rainbowhat:$librariesVersions.rainbowHatDrivers",
+
+            // https://github.com/ReactiveX/RxJava
+            rxJava2               : "io.reactivex.rxjava2:rxjava:$librariesVersions.rxJava2",
+
+            // https://github.com/ReactiveX/RxAndroid
+            rxJava2Android        : "io.reactivex.rxjava2:rxandroid:$librariesVersions.rxJava2Android",
+
+            // https://github.com/ReactiveX/RxKotlin
+            rxJava2Kotlin         : "io.reactivex.rxjava2:rxkotlin:$librariesVersions.rxJava2Kotlin"
     ]
 
     testLibrariesVersions = [
