@@ -4,10 +4,16 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.christiankula.rpimusicbox.remote.nearby.Endpoint
+import com.christiankula.rpimusicbox.remote.nearby.EndpointDiscoveryStarted
+import com.christiankula.rpimusicbox.remote.nearby.EndpointFound
+import com.christiankula.rpimusicbox.remote.nearby.NearbyUsecase
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
 import javax.inject.Inject
 
-class MusicBoxDiscoveryViewModel : ViewModel() {
+class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase) : ViewModel() {
 
     private val _stateLiveData = MutableLiveData<MusicBoxDiscoveryState>()
 
@@ -20,8 +26,25 @@ class MusicBoxDiscoveryViewModel : ViewModel() {
         _stateLiveData.value = StartMusicBoxDiscovery
     }
 
+    private var foundEndpoint: Endpoint? = null
+
     fun onSearchMusicBoxButtonClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        disposables += nearbyUsecase.observeEndpointDiscovery()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    when (it) {
+                        is EndpointDiscoveryStarted -> {
+                            _stateLiveData.value = MusicBoxDiscoveryStarted
+                        }
+
+                        is EndpointFound -> {
+                            foundEndpoint = it.endpoint
+                            _stateLiveData.value = MusicBoxFound(it.endpoint)
+                        }
+                    }
+                }, {
+                    _stateLiveData.value = MusicBoxDiscoveryFailed
+                })
     }
 
     override fun onCleared() {
@@ -30,10 +53,11 @@ class MusicBoxDiscoveryViewModel : ViewModel() {
         disposables.clear()
     }
 
-    class Factory @Inject constructor() : ViewModelProvider.Factory {
+    class Factory @Inject constructor(private val nearbyUsecase: NearbyUsecase) : ViewModelProvider.Factory {
+
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MusicBoxDiscoveryViewModel() as T
+            return MusicBoxDiscoveryViewModel(nearbyUsecase) as T
         }
     }
 }

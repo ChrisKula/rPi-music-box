@@ -27,6 +27,18 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(), StartMusicBoxDiscoveryFra
         viewModel.stateLiveData.observe(this, Observer { state ->
             when (state) {
                 is StartMusicBoxDiscovery -> replaceFragment(R.id.mainContent, StartMusicBoxDiscoveryFragment.newInstance(), StartMusicBoxDiscoveryFragment.TAG)
+
+                is MusicBoxDiscoveryStarted -> {
+                    //TODO Change to DiscoveringMusicBoxFragment
+                }
+
+                is MusicBoxDiscoveryFailed -> {
+                    //TODO Change to MusicBoxDiscoveryFailedFragment
+                }
+
+                is MusicBoxFound -> {
+                    //TODO Change to MusicBoxFoundFragment
+                }
             }
         })
     }
