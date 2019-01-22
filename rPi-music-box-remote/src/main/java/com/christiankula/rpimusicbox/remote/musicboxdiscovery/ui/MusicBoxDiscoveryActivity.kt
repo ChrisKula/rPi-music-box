@@ -1,5 +1,6 @@
 package com.christiankula.rpimusicbox.remote.musicboxdiscovery.ui
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -23,7 +24,11 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(), StartMusicBoxDiscoveryFra
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MusicBoxDiscoveryViewModel::class.java)
 
-        replaceFragment(R.id.mainContent, StartMusicBoxDiscoveryFragment.newInstance(), StartMusicBoxDiscoveryFragment.TAG)
+        viewModel.stateLiveData.observe(this, Observer { state ->
+            when (state) {
+                is StartMusicBoxDiscovery -> replaceFragment(R.id.mainContent, StartMusicBoxDiscoveryFragment.newInstance(), StartMusicBoxDiscoveryFragment.TAG)
+            }
+        })
     }
 
     override fun onSearchMusicBoxButtonClick() {
