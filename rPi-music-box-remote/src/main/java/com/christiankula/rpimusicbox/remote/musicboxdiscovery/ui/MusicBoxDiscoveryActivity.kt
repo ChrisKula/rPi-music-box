@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import com.christiankula.rpimusicbox.remote.R
+import com.christiankula.rpimusicbox.remote.extensions.findFragmentByTag
 import com.christiankula.rpimusicbox.remote.extensions.goToAppSettings
 import com.christiankula.rpimusicbox.remote.extensions.replaceFragment
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.discovering.ui.DiscoveringMusicBoxFragment
@@ -36,9 +37,17 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
 
         viewModel.stateLiveData.observe(this, Observer { state ->
             when (state) {
-                is StartMusicBoxDiscovery -> replaceFragment(R.id.mainContent, StartMusicBoxDiscoveryFragment.newInstance(), StartMusicBoxDiscoveryFragment.TAG)
+                is StartMusicBoxDiscovery -> {
+                    replaceFragment(R.id.mainContent, StartMusicBoxDiscoveryFragment.newInstance(), StartMusicBoxDiscoveryFragment.TAG)
+                }
 
-                is MusicBoxDiscoveryStarted -> replaceFragment(R.id.mainContent, DiscoveringMusicBoxFragment.newInstance(), DiscoveringMusicBoxFragment.TAG)
+                is MusicBoxDiscoveryInitiated -> {
+                    findFragmentByTag<StartMusicBoxDiscoveryFragment>(StartMusicBoxDiscoveryFragment.TAG)?.setSearchMusicBoxButtonEnabled(false)
+                }
+
+                is MusicBoxDiscoveryStarted -> {
+                    replaceFragment(R.id.mainContent, DiscoveringMusicBoxFragment.newInstance(), DiscoveringMusicBoxFragment.TAG)
+                }
 
                 is MusicBoxDiscoveryFailed -> {
                     //TODO Change to MusicBoxDiscoveryFailedFragment

@@ -44,3 +44,12 @@ fun AppCompatActivity.goToAppSettings() {
 
     startActivity(intent)
 }
+
+/**
+ * Convenient method that find the Fragment by the given tag and then safelly cast it to the given type
+ *
+ * Returns `null` if there's no Fragment with the given tag or if the found Fragment couldn't be casted
+ */
+inline fun <reified T : Fragment> AppCompatActivity.findFragmentByTag(tag: String?): T? {
+    return supportFragmentManager.findFragmentByTag(tag) as? T
+}

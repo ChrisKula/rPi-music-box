@@ -45,6 +45,10 @@ class StartMusicBoxDiscoveryFragment : Fragment() {
         interactionListener = null
     }
 
+    fun setSearchMusicBoxButtonEnabled(isEnabled: Boolean) {
+        searchMusicBoxButton.isEnabled = isEnabled
+    }
+
     interface InteractionListener {
         fun onSearchMusicBoxButtonClick()
     }

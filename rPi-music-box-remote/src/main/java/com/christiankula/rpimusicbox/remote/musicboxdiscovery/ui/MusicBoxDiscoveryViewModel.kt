@@ -4,15 +4,11 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.christiankula.rpimusicbox.remote.nearby.Endpoint
-import com.christiankula.rpimusicbox.remote.nearby.EndpointDiscoveryStarted
-import com.christiankula.rpimusicbox.remote.nearby.EndpointFound
-import com.christiankula.rpimusicbox.remote.nearby.NearbyUsecase
+import com.christiankula.rpimusicbox.remote.nearby.*
 import com.christiankula.rpimusicbox.remote.permission.NEARBY_API_PERMISSION
 import com.christiankula.rpimusicbox.remote.permission.PermissionManager
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.plusAssign
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
@@ -31,7 +27,7 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
     val permissionRequestLiveData: LiveData<String>
         get() = _permissionRequestLiveData
 
-    private val disposables = CompositeDisposable()
+    private var observeEndpointDiscoveryDisposable: Disposable? = null
 
     init {
         _stateLiveData.value = StartMusicBoxDiscovery
@@ -52,34 +48,34 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
     }
 
     fun onCancelMusicBoxSearchButtonClicked() {
-        disposables.clear()
+        observeEndpointDiscoveryDisposable?.dispose()
 
         _stateLiveData.value = StartMusicBoxDiscovery
     }
 
     private fun observeEndpoints() {
-        disposables += nearbyUsecase.observeEndpointDiscovery()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    when (it) {
-                        is EndpointDiscoveryStarted -> {
-                            _stateLiveData.value = MusicBoxDiscoveryStarted
-                        }
+        if (observeEndpointDiscoveryDisposable == null || observeEndpointDiscoveryDisposable?.isDisposed == true) {
+            observeEndpointDiscoveryDisposable = nearbyUsecase.observeEndpointDiscovery()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        when (it) {
+                            is EndpointDiscoveryInitiated -> _stateLiveData.value = MusicBoxDiscoveryInitiated
 
-                        is EndpointFound -> {
-                            foundEndpoint = it.endpoint
-                            _stateLiveData.value = MusicBoxFound(it.endpoint)
+                            is EndpointDiscoveryStarted -> _stateLiveData.value = MusicBoxDiscoveryStarted
+
+                            is EndpointFound -> {
+                                foundEndpoint = it.endpoint
+                                _stateLiveData.value = MusicBoxFound(it.endpoint)
+                            }
                         }
-                    }
-                }, {
-                    _stateLiveData.value = MusicBoxDiscoveryFailed
-                })
+                    }, {
+                        _stateLiveData.value = MusicBoxDiscoveryFailed
+                    })
+        }
     }
 
     override fun onCleared() {
-        super.onCleared()
-
-        disposables.clear()
+        observeEndpointDiscoveryDisposable?.dispose()
     }
 
     class Factory @Inject constructor(private val nearbyUsecase: NearbyUsecase,

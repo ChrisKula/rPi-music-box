@@ -40,6 +40,8 @@ private class EndpointDiscoveryEventObservable(private val connectionsClient: Co
             }
         })
 
+        observer.onNext(EndpointDiscoveryInitiated)
+
         connectionsClient.startDiscovery(SERVICE_ID, EndpointDiscoveryListener(observer), DiscoveryOptions(Strategy.P2P_STAR))
                 .addOnSuccessListener { observer.onNext(EndpointDiscoveryStarted) }
                 .addOnFailureListener {
@@ -65,9 +67,28 @@ private class EndpointDiscoveryListener(private val observer: Observer<in Endpoi
 
 sealed class EndpointDiscoveryEvent
 
+/**
+ * An endpoint has been found
+ *
+ * @param endpoint the found endpoint
+ */
 data class EndpointFound(val endpoint: Endpoint) : EndpointDiscoveryEvent()
+
+/**
+ * A previously found endpoint has been lost
+ *
+ * @param id the ID of the lost endpoint
+ */
 data class EndPointLost(val id: String) : EndpointDiscoveryEvent()
 
+/**
+ * The endpoint discovery has been initiated but the device is not yet searching
+ */
+object EndpointDiscoveryInitiated : EndpointDiscoveryEvent()
+
+/**
+ * The endpoint discovery has been correctly started and the devices is searching for endpoints
+ */
 object EndpointDiscoveryStarted : EndpointDiscoveryEvent()
 
 /**
@@ -75,4 +96,4 @@ object EndpointDiscoveryStarted : EndpointDiscoveryEvent()
  */
 object AlreadyDiscoveringEndpointsException : Exception("Client already discovering")
 
-object MissingAccessCoarseLocationPermissionException : Exception("")
+object MissingAccessCoarseLocationPermissionException : Exception("Missing access to coarse location permission")
