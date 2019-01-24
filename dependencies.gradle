@@ -10,7 +10,8 @@ ext {
             rxJava2             : "2.2.5",
             rxJava2Android      : "2.1.0",
             rxJava2Kotlin       : "2.3.0",
-            supportLibrary      : "28.0.0"
+            supportLibrary      : "28.0.0",
+            timber              : "4.7.1"
     ]
 
     libraries = [
@@ -49,7 +50,10 @@ ext {
             rxJava2Android        : "io.reactivex.rxjava2:rxandroid:$librariesVersions.rxJava2Android",
 
             // https://github.com/ReactiveX/RxKotlin
-            rxJava2Kotlin         : "io.reactivex.rxjava2:rxkotlin:$librariesVersions.rxJava2Kotlin"
+            rxJava2Kotlin         : "io.reactivex.rxjava2:rxkotlin:$librariesVersions.rxJava2Kotlin",
+
+            // https://github.com/JakeWharton/timber
+            timber                : "com.jakewharton.timber:timber:$librariesVersions.timber"
     ]
 
     testLibrariesVersions = [

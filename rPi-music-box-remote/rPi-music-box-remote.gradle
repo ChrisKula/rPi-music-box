@@ -67,6 +67,8 @@ dependencies {
     implementation libraries.rxJava2Android
     implementation libraries.rxJava2Kotlin
 
+    implementation libraries.timber
+
     // Test dependencies
     testImplementation testLibraries.junit
     androidTestImplementation testLibraries.androidTestRunner

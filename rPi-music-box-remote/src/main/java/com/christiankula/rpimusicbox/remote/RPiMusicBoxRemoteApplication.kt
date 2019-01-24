@@ -6,6 +6,7 @@ import com.christiankula.rpimusicbox.remote.injection.DaggerRPiMusicBoxRemoteApp
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import timber.log.Timber
 import javax.inject.Inject
 
 class RPiMusicBoxRemoteApplication : Application(), HasActivityInjector {
@@ -13,9 +14,12 @@ class RPiMusicBoxRemoteApplication : Application(), HasActivityInjector {
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
-
     override fun onCreate() {
         super.onCreate()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
 
         DaggerRPiMusicBoxRemoteApplicationComponent.builder()
                 .application(this)
