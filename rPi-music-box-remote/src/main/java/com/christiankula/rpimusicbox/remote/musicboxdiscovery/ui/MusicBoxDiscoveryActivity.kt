@@ -12,6 +12,7 @@ import com.christiankula.rpimusicbox.remote.extensions.findFragmentByTag
 import com.christiankula.rpimusicbox.remote.extensions.goToAppSettings
 import com.christiankula.rpimusicbox.remote.extensions.replaceFragment
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.discovering.ui.DiscoveringMusicBoxFragment
+import com.christiankula.rpimusicbox.remote.musicboxdiscovery.start.ui.MusicBoxDiscoveryFailedFragment
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.start.ui.StartMusicBoxDiscoveryFragment
 import com.christiankula.rpimusicbox.remote.permission.NEARBY_API_PERMISSION
 import dagger.android.AndroidInjection
@@ -21,7 +22,8 @@ private const val NEARBY_API_PERMISSION_REQUEST_CODE = 3105
 
 class MusicBoxDiscoveryActivity : AppCompatActivity(),
         StartMusicBoxDiscoveryFragment.InteractionListener,
-        DiscoveringMusicBoxFragment.InteractionListener {
+        DiscoveringMusicBoxFragment.InteractionListener,
+        MusicBoxDiscoveryFailedFragment.InteractionListener {
 
     @Inject
     lateinit var viewModelFactory: MusicBoxDiscoveryViewModel.Factory
@@ -50,7 +52,7 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
                 }
 
                 is MusicBoxDiscoveryFailed -> {
-                    //TODO Change to MusicBoxDiscoveryFailedFragment
+                    replaceFragment(R.id.mainContent, MusicBoxDiscoveryFailedFragment.newInstance(), MusicBoxDiscoveryFailedFragment.TAG)
                 }
 
                 is MusicBoxFound -> {
@@ -78,6 +80,10 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
 
     override fun onCancelMusicBoxSearchButtonClick() {
         viewModel.onCancelMusicBoxSearchButtonClicked()
+    }
+
+    override fun onRetryMusicBoxSearchButtonClick() {
+        viewModel.onRetryMusicBoxSearchButtonClicked()
     }
 
     private fun requestNearbyApiPermission() {

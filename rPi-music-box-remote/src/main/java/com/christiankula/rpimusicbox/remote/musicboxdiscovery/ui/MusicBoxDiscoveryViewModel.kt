@@ -53,6 +53,10 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
         _stateLiveData.value = StartMusicBoxDiscovery
     }
 
+    fun onRetryMusicBoxSearchButtonClicked() {
+        observeEndpoints()
+    }
+
     private fun observeEndpoints() {
         if (observeEndpointDiscoveryDisposable == null || observeEndpointDiscoveryDisposable?.isDisposed == true) {
             observeEndpointDiscoveryDisposable = nearbyUsecase.observeEndpointDiscovery()
