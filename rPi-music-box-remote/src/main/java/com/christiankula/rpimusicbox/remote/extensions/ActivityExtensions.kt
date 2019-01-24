@@ -1,5 +1,8 @@
 package com.christiankula.rpimusicbox.remote.extensions
 
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -28,4 +31,16 @@ fun AppCompatActivity.replaceFragment(@IdRes containerViewId: Int, fragment: Fra
                 }
             }
             .commit()
+}
+
+/**
+ * Open the App's settings screen in a new Activity
+ */
+fun AppCompatActivity.goToAppSettings() {
+    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName"))
+            .apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+
+    startActivity(intent)
 }

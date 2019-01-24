@@ -8,17 +8,28 @@ import com.christiankula.rpimusicbox.remote.nearby.Endpoint
 import com.christiankula.rpimusicbox.remote.nearby.EndpointDiscoveryStarted
 import com.christiankula.rpimusicbox.remote.nearby.EndpointFound
 import com.christiankula.rpimusicbox.remote.nearby.NearbyUsecase
+import com.christiankula.rpimusicbox.remote.permission.NEARBY_API_PERMISSION
+import com.christiankula.rpimusicbox.remote.permission.PermissionManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import javax.inject.Inject
 
-class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase) : ViewModel() {
+class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
+                                 private val permissionManager: PermissionManager) : ViewModel() {
 
     private val _stateLiveData = MutableLiveData<MusicBoxDiscoveryState>()
 
     val stateLiveData: LiveData<MusicBoxDiscoveryState>
         get() = _stateLiveData
+
+    private val _permissionRequestLiveData = MutableLiveData<String>()
+
+    /**
+     * Live data that emits String corresponding to a permission to be requested
+     */
+    val permissionRequestLiveData: LiveData<String>
+        get() = _permissionRequestLiveData
 
     private val disposables = CompositeDisposable()
 
@@ -29,6 +40,18 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase) : Vie
     private var foundEndpoint: Endpoint? = null
 
     fun onSearchMusicBoxButtonClicked() {
+        if (permissionManager.hasPermissionsForNearby()) {
+            observeEndpoints()
+        } else {
+            _permissionRequestLiveData.value = NEARBY_API_PERMISSION
+        }
+    }
+
+    fun onNearbyApiPermissionGranted() {
+        observeEndpoints()
+    }
+
+    private fun observeEndpoints() {
         disposables += nearbyUsecase.observeEndpointDiscovery()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -53,11 +76,12 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase) : Vie
         disposables.clear()
     }
 
-    class Factory @Inject constructor(private val nearbyUsecase: NearbyUsecase) : ViewModelProvider.Factory {
+    class Factory @Inject constructor(private val nearbyUsecase: NearbyUsecase,
+                                      private val permissionManager: PermissionManager) : ViewModelProvider.Factory {
 
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MusicBoxDiscoveryViewModel(nearbyUsecase) as T
+            return MusicBoxDiscoveryViewModel(nearbyUsecase, permissionManager) as T
         }
     }
 }
