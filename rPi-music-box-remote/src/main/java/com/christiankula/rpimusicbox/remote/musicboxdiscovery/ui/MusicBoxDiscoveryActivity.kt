@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import com.christiankula.rpimusicbox.remote.R
 import com.christiankula.rpimusicbox.remote.extensions.goToAppSettings
 import com.christiankula.rpimusicbox.remote.extensions.replaceFragment
+import com.christiankula.rpimusicbox.remote.musicboxdiscovery.discovering.ui.DiscoveringMusicBoxFragment
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.start.ui.StartMusicBoxDiscoveryFragment
 import com.christiankula.rpimusicbox.remote.permission.NEARBY_API_PERMISSION
 import dagger.android.AndroidInjection
@@ -17,7 +18,9 @@ import javax.inject.Inject
 
 private const val NEARBY_API_PERMISSION_REQUEST_CODE = 3105
 
-class MusicBoxDiscoveryActivity : AppCompatActivity(), StartMusicBoxDiscoveryFragment.InteractionListener {
+class MusicBoxDiscoveryActivity : AppCompatActivity(),
+        StartMusicBoxDiscoveryFragment.InteractionListener,
+        DiscoveringMusicBoxFragment.InteractionListener {
 
     @Inject
     lateinit var viewModelFactory: MusicBoxDiscoveryViewModel.Factory
@@ -35,9 +38,7 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(), StartMusicBoxDiscoveryFra
             when (state) {
                 is StartMusicBoxDiscovery -> replaceFragment(R.id.mainContent, StartMusicBoxDiscoveryFragment.newInstance(), StartMusicBoxDiscoveryFragment.TAG)
 
-                is MusicBoxDiscoveryStarted -> {
-                    //TODO Change to DiscoveringMusicBoxFragment
-                }
+                is MusicBoxDiscoveryStarted -> replaceFragment(R.id.mainContent, DiscoveringMusicBoxFragment.newInstance(), DiscoveringMusicBoxFragment.TAG)
 
                 is MusicBoxDiscoveryFailed -> {
                     //TODO Change to MusicBoxDiscoveryFailedFragment
@@ -64,6 +65,10 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(), StartMusicBoxDiscoveryFra
 
     override fun onSearchMusicBoxButtonClick() {
         viewModel.onSearchMusicBoxButtonClicked()
+    }
+
+    override fun onCancelMusicBoxSearchButtonClick() {
+        viewModel.onCancelMusicBoxSearchButtonClicked()
     }
 
     private fun requestNearbyApiPermission() {

@@ -15,4 +15,8 @@
 
     <string name="music_box_discovery_nearby_api_permission_denied_dialog_message">The app can\'t search for nearby music box unless it has been granted the permission to access to coarse location.\n\nYou can go to app\'s settings screen to change that.</string>
     <string name="music_box_discovery_nearby_api_permission_denied_dialog_positive_button_go_to_app_settings">Go to app settings</string>
+
+    <!-- Discovering -->
+    <string name="discovering_music_box_search_in_progress">Search in progress…</string>
+    <string name="discovering_music_box_button_cancel">Cancel</string>
 </resources>

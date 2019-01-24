@@ -51,6 +51,12 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
         observeEndpoints()
     }
 
+    fun onCancelMusicBoxSearchButtonClicked() {
+        disposables.clear()
+
+        _stateLiveData.value = StartMusicBoxDiscovery
+    }
+
     private fun observeEndpoints() {
         disposables += nearbyUsecase.observeEndpointDiscovery()
                 .observeOn(AndroidSchedulers.mainThread())
