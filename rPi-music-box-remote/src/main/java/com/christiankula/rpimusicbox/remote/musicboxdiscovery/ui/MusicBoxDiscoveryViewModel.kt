@@ -57,6 +57,10 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
         observeEndpoints()
     }
 
+    fun onConnectToMusicBoxButtonClicked() {
+        TODO("not implemented")
+    }
+
     private fun observeEndpoints() {
         if (observeEndpointDiscoveryDisposable == null || observeEndpointDiscoveryDisposable?.isDisposed == true) {
             observeEndpointDiscoveryDisposable = nearbyUsecase.observeEndpointDiscovery()

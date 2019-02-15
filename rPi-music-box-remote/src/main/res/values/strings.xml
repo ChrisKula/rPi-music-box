@@ -23,4 +23,7 @@
     <!--Discovering failed -->
     <string name="music_box_discovery_failed_message">Something bad happened while trying to search for a music box</string>
     <string name="music_box_discovery_failed_button_retry">Retry</string>
+
+    <string name="found_music_box_found_music_box">Found <b>%1$s</b> music box!</string>
+    <string name="found_music_box_connect">Connect</string>
 </resources>
