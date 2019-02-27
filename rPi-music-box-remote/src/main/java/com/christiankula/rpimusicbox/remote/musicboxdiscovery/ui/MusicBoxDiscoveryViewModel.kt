@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.christiankula.rpimusicbox.remote.nearby.*
+import com.christiankula.rpimusicbox.nearby.*
 import com.christiankula.rpimusicbox.remote.permission.NEARBY_API_PERMISSION
 import com.christiankula.rpimusicbox.remote.permission.PermissionManager
 import io.reactivex.android.schedulers.AndroidSchedulers

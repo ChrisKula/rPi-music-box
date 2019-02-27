@@ -47,6 +47,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(":nearby")
+
     implementation libraries.androidArchLifecycle
 
     implementation libraries.appCompat
