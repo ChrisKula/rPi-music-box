@@ -3,6 +3,7 @@ package com.christiankula.rpimusicbox.nearby
 import android.Manifest
 import com.christiankula.rpimusicbox.nearby.connection.ConnectionLifecycleObservable
 import com.christiankula.rpimusicbox.nearby.connection.ConnectionStatus
+import com.christiankula.rpimusicbox.nearby.connection.PayloadObservable
 import com.christiankula.rpimusicbox.nearby.discovery.EndpointDiscoveryEvent
 import com.christiankula.rpimusicbox.nearby.discovery.EndpointDiscoveryEventObservable
 import com.christiankula.rpimusicbox.nearby.discovery.exceptions.AlreadyDiscoveringEndpointsException
@@ -30,5 +31,14 @@ class NearbyUsecase(private val connectionsClient: ConnectionsClient) {
 
     fun requestConnection(endpointId: String, clientName: String): Observable<ConnectionStatus> {
         return ConnectionLifecycleObservable(connectionsClient, endpointId, clientName).subscribeOn(Schedulers.io())
+    }
+
+    // TODO Change the type of Observable (String -> Something else)
+    /**
+     * Accept the connection to the given endpoint ID. It will start to send payload events down the
+     * stream if the connection was successful.
+     */
+    fun acceptConnection(endpointId: String): Observable<String> {
+        return PayloadObservable(connectionsClient, endpointId).subscribeOn(Schedulers.io())
     }
 }
