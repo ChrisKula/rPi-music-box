@@ -1,12 +1,13 @@
 package com.christiankula.rpimusicbox.nearby
 
 import android.Manifest
+import com.christiankula.rpimusicbox.nearby.connection.ConnectionLifecycleObservable
+import com.christiankula.rpimusicbox.nearby.connection.ConnectionStatus
 import com.christiankula.rpimusicbox.nearby.discovery.EndpointDiscoveryEvent
 import com.christiankula.rpimusicbox.nearby.discovery.EndpointDiscoveryEventObservable
 import com.christiankula.rpimusicbox.nearby.discovery.exceptions.AlreadyDiscoveringEndpointsException
 import com.christiankula.rpimusicbox.nearby.discovery.exceptions.MissingAccessCoarseLocationPermissionException
 import com.google.android.gms.nearby.connection.ConnectionsClient
-import com.google.android.gms.nearby.connection.Payload
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
@@ -24,11 +25,10 @@ class NearbyUsecase(private val connectionsClient: ConnectionsClient) {
      * with an [MissingAccessCoarseLocationPermissionException] if the permission hasn't been granted beforehand.
      */
     fun observeEndpointDiscovery(): Observable<EndpointDiscoveryEvent> {
-        return EndpointDiscoveryEventObservable(connectionsClient)
-                .subscribeOn(Schedulers.io())
+        return EndpointDiscoveryEventObservable(connectionsClient).subscribeOn(Schedulers.io())
     }
 
-    fun requestConnection(endpointId: String): Observable<Pair<String, Payload>> {
-        return EndpointPayloadObservable(endpointId, connectionsClient).subscribeOn(Schedulers.io())
+    fun requestConnection(endpointId: String, clientName: String): Observable<ConnectionStatus> {
+        return ConnectionLifecycleObservable(connectionsClient, endpointId, clientName).subscribeOn(Schedulers.io())
     }
 }
