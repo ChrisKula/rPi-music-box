@@ -40,7 +40,7 @@ class FoundMusicBoxFragment : Fragment() {
 
         connectToMusicBoxButton.setOnClickListener { interactionListener?.onConnectToMusicBoxButtonClick() }
 
-        foundMusicBoxTextView.text = getString(R.string.found_music_box_found_music_box, arguments!!.getString(FOUND_MUSIC_BOX_NAME_KEY))
+        foundMusicBoxName.text = arguments!!.getString(FOUND_MUSIC_BOX_NAME_KEY)
     }
 
     override fun onAttach(context: Context) {
