@@ -1,7 +1,13 @@
 apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation libraries.kotlinStdLib
+
+    implementation libraries.rxJava2
+    implementation libraries.rxJava2Kotlin
 }
 
 sourceCompatibility = "1.7"

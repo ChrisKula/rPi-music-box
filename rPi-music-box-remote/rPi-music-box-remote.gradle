@@ -20,6 +20,7 @@ android {
         versionName computeVersionName(versionMajor, versionMinor, versionPatch)
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -46,6 +47,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(":nearby")
+
     implementation libraries.androidArchLifecycle
 
     implementation libraries.appCompat
@@ -65,6 +68,8 @@ dependencies {
     implementation libraries.rxJava2
     implementation libraries.rxJava2Android
     implementation libraries.rxJava2Kotlin
+
+    implementation libraries.timber
 
     // Test dependencies
     testImplementation testLibraries.junit

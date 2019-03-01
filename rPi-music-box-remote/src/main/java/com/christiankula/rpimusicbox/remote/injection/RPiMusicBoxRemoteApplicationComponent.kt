@@ -1,6 +1,7 @@
 package com.christiankula.rpimusicbox.remote.injection
 
 import com.christiankula.rpimusicbox.remote.RPiMusicBoxRemoteApplication
+import com.christiankula.rpimusicbox.remote.nearby.injection.NearbyModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -11,7 +12,8 @@ import javax.inject.Singleton
 @Component(modules = [
     AndroidInjectionModule::class,
     BuildersModule::class,
-    RPiMusicBoxRemoteApplicationModule::class
+    RPiMusicBoxRemoteApplicationModule::class,
+    NearbyModule::class
 ])
 interface RPiMusicBoxRemoteApplicationComponent {
 
