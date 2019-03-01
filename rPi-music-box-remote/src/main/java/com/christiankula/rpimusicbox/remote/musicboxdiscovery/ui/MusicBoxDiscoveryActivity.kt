@@ -60,6 +60,10 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
                 is MusicBoxFound -> {
                     replaceFragment(R.id.mainContent, FoundMusicBoxFragment.newInstance(state.musicBox.name), FoundMusicBoxFragment.TAG)
                 }
+
+                is MusicBoxLost -> {
+                    replaceFragment(R.id.mainContent, DiscoveringMusicBoxFragment.newInstance(state.musicBox.name), DiscoveringMusicBoxFragment.TAG)
+                }
             }
         })
 

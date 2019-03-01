@@ -29,3 +29,8 @@ object MusicBoxDiscoveryFailed : MusicBoxDiscoveryState()
  * @param musicBox the found music box
  */
 data class MusicBoxFound(val musicBox: Endpoint) : MusicBoxDiscoveryState()
+
+/**
+ * A previously discovered music box has been lost
+ */
+data class MusicBoxLost(val musicBox: Endpoint) : MusicBoxDiscoveryState()
