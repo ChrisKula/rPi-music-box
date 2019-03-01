@@ -1,6 +1,8 @@
 package com.christiankula.rpimusicbox.nearby
 
 import android.Manifest
+import com.christiankula.rpimusicbox.nearby.advertise.EndpointAdvertisingEvent
+import com.christiankula.rpimusicbox.nearby.advertise.EndpointAdvertisingEventObservable
 import com.christiankula.rpimusicbox.nearby.connection.ConnectionLifecycleObservable
 import com.christiankula.rpimusicbox.nearby.connection.ConnectionStatus
 import com.christiankula.rpimusicbox.nearby.connection.PayloadObservable
@@ -40,5 +42,9 @@ class NearbyUsecase(private val connectionsClient: ConnectionsClient) {
      */
     fun acceptConnection(endpointId: String): Observable<String> {
         return PayloadObservable(connectionsClient, endpointId).subscribeOn(Schedulers.io())
+    }
+
+    fun observeAdvertising(serverName: String): Observable<EndpointAdvertisingEvent> {
+        return EndpointAdvertisingEventObservable(connectionsClient, serverName).subscribeOn(Schedulers.io())
     }
 }
