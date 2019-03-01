@@ -42,6 +42,6 @@ private class EndpointDiscoveryListener(private val observer: Observer<in Endpoi
     }
 
     override fun onEndpointLost(lostEndpointId: String) {
-        observer.onNext(EndPointLost(lostEndpointId))
+        observer.onNext(EndpointLost(lostEndpointId))
     }
 }

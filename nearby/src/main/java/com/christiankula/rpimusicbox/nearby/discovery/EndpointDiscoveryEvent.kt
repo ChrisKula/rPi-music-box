@@ -16,7 +16,7 @@ data class EndpointFound(val endpoint: Endpoint) : EndpointDiscoveryEvent()
  *
  * @param id the ID of the lost endpoint
  */
-data class EndPointLost(val id: String) : EndpointDiscoveryEvent()
+data class EndpointLost(val id: String) : EndpointDiscoveryEvent()
 
 /**
  * The endpoint discovery has been initiated but the device is not yet searching
