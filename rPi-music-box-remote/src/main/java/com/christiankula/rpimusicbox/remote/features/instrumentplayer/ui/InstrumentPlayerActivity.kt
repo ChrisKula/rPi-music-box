@@ -1,5 +1,6 @@
 package com.christiankula.rpimusicbox.remote.features.instrumentplayer.ui
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import com.christiankula.rpimusicbox.remote.R
 import com.christiankula.rpimusicbox.remote.models.MusicBox
 import dagger.android.AndroidInjection
+import javax.inject.Inject
 
 private const val FOUND_MUSIC_BOX_EXTRA_KEY = "FOUND_MUSIC_BOX"
 
@@ -26,9 +28,16 @@ class InstrumentPlayerActivity : AppCompatActivity() {
         }
     }
 
+    @Inject
+    lateinit var viewModelFactory: InstrumentPlayerViewModel.Factory
+
+    private lateinit var viewModel: InstrumentPlayerViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_instrument_player)
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(InstrumentPlayerViewModel::class.java)
     }
 }
