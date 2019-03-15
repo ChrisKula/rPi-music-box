@@ -11,6 +11,7 @@ import com.christiankula.rpimusicbox.androidcommons.extensions.findFragmentByTag
 import com.christiankula.rpimusicbox.androidcommons.extensions.goToAppSettings
 import com.christiankula.rpimusicbox.androidcommons.extensions.replaceFragment
 import com.christiankula.rpimusicbox.remote.R
+import com.christiankula.rpimusicbox.remote.features.instrumentplayer.ui.InstrumentPlayerActivity
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.discovering.ui.DiscoveringMusicBoxFragment
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.foundmusicbox.FoundMusicBoxFragment
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.start.ui.MusicBoxDiscoveryFailedFragment
@@ -70,6 +71,14 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
         viewModel.permissionRequestLiveData.observe(this, Observer { permission ->
             when (permission) {
                 NEARBY_API_PERMISSION -> requestNearbyApiPermission()
+            }
+        })
+
+        viewModel.navigationLiveData.observe(this, Observer {
+            when (it) {
+                is MusicBoxDiscoveryNavigation.NavigateToInstrumentPlayer -> {
+                    startActivity(InstrumentPlayerActivity.newIntent(this, it.musicBox))
+                }
             }
         })
     }

@@ -34,6 +34,14 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
     val permissionRequestLiveData: LiveData<String>
         get() = _permissionRequestLiveData
 
+    private val _navigationLiveData = SingleLiveEvent<MusicBoxDiscoveryNavigation>()
+
+    /**
+     * Emits events related to navigation from this View
+     */
+    val navigationLiveData: LiveData<MusicBoxDiscoveryNavigation>
+        get() = _navigationLiveData
+
     private var observeEndpointDiscoveryDisposable: Disposable? = null
 
     init {
@@ -65,7 +73,9 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
     }
 
     fun onConnectToMusicBoxButtonClicked() {
-        TODO("not implemented")
+        foundMusicBox?.let {
+            _navigationLiveData.value = MusicBoxDiscoveryNavigation.NavigateToInstrumentPlayer(it)
+        }
     }
 
     private fun observeEndpoints() {
