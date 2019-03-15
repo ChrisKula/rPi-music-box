@@ -22,7 +22,7 @@
 
     <Button
         android:id="@+id/discoveringMusicBoxCancelSearchButton"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        style="?borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/discovering_music_box_button_cancel" />

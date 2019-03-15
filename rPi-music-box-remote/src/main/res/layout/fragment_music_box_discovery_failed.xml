@@ -24,7 +24,7 @@
 
     <Button
         android:id="@+id/retryMusicBoxSearchButton"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        style="?borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/button_search_margin_top"
