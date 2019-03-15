@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.christiankula.rpimusicbox.androidcommons.livedata.SingleLiveEvent
+import com.christiankula.rpimusicbox.remote.models.MusicBox
+import com.christiankula.rpimusicbox.remote.models.fromEndpoint
 import com.christiankula.rpimusicbox.remote.permission.NEARBY_API_PERMISSION
 import com.christiankula.rpimusicbox.remote.permission.PermissionManager
-import com.christiankula.rpimusicbox.rxnearby.Endpoint
 import com.christiankula.rpimusicbox.rxnearby.RxNearby
 import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointDiscoveryInitiated
 import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointDiscoveryStarted
@@ -39,7 +40,7 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
         _stateLiveData.value = StartMusicBoxDiscovery
     }
 
-    private var foundEndpoint: Endpoint? = null
+    private var foundMusicBox: MusicBox? = null
 
     fun onSearchMusicBoxButtonClicked() {
         if (permissionManager.hasPermissionsForNearby()) {
@@ -78,15 +79,17 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
                             is EndpointDiscoveryStarted -> _stateLiveData.value = MusicBoxDiscoveryStarted
 
                             is EndpointFound -> {
-                                foundEndpoint = it.endpoint
-                                _stateLiveData.value = MusicBoxFound(it.endpoint)
+                                fromEndpoint(it.endpoint).also { musicBox ->
+                                    foundMusicBox = musicBox
+                                    _stateLiveData.value = MusicBoxFound(musicBox)
+                                }
                             }
 
                             is EndpointLost -> {
-                                foundEndpoint?.let { endpoint ->
-                                    if (it.id == endpoint.id) {
-                                        _stateLiveData.value = MusicBoxLost(endpoint.copy())
-                                        foundEndpoint = null
+                                foundMusicBox?.let { musicBox ->
+                                    if (it.id == musicBox.id) {
+                                        _stateLiveData.value = MusicBoxLost(musicBox.copy())
+                                        foundMusicBox = null
                                     }
                                 }
                             }
