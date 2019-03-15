@@ -29,6 +29,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation libraries.androidArchLifecycle
+
     implementation libraries.kotlinStdLib
 
     // Test dependencies
