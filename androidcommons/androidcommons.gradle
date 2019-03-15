@@ -31,6 +31,8 @@ dependencies {
 
     implementation libraries.androidArchLifecycle
 
+    implementation libraries.appCompat
+
     implementation libraries.kotlinStdLib
 
     // Test dependencies
