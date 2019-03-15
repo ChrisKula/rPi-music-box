@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import com.christiankula.rpimusicbox.androidcommons.extensions.findFragmentByTag
+import com.christiankula.rpimusicbox.androidcommons.extensions.goToAppSettings
+import com.christiankula.rpimusicbox.androidcommons.extensions.replaceFragment
 import com.christiankula.rpimusicbox.remote.R
-import com.christiankula.rpimusicbox.remote.extensions.findFragmentByTag
-import com.christiankula.rpimusicbox.remote.extensions.goToAppSettings
-import com.christiankula.rpimusicbox.remote.extensions.replaceFragment
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.discovering.ui.DiscoveringMusicBoxFragment
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.foundmusicbox.FoundMusicBoxFragment
 import com.christiankula.rpimusicbox.remote.musicboxdiscovery.start.ui.MusicBoxDiscoveryFailedFragment

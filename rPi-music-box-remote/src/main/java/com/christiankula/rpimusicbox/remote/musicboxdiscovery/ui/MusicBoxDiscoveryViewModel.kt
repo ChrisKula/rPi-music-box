@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.christiankula.rpimusicbox.androidcommons.livedata.SingleLiveEvent
 import com.christiankula.rpimusicbox.nearby.Endpoint
 import com.christiankula.rpimusicbox.nearby.NearbyUsecase
 import com.christiankula.rpimusicbox.nearby.discovery.EndpointDiscoveryInitiated
@@ -24,7 +25,7 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
     val stateLiveData: LiveData<MusicBoxDiscoveryState>
         get() = _stateLiveData
 
-    private val _permissionRequestLiveData = MutableLiveData<String>()
+    private val _permissionRequestLiveData = SingleLiveEvent<String>()
 
     /**
      * Live data that emits String corresponding to a permission to be requested

@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.remote.extensions
+package com.christiankula.rpimusicbox.androidcommons.extensions
 
 import android.content.Intent
 import android.net.Uri
