@@ -7,4 +7,6 @@
 
     <style name="Theme.MusicBoxDiscovery" parent="Base.Theme.MusicBoxDiscovery" />
 
+    <style name="Theme.InstrumentPlayer" parent="Base.Theme.InstrumentPlayer" />
+
 </resources>

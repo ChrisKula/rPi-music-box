@@ -18,6 +18,8 @@
 
     <style name="Base.V1.Theme.MusicBoxDiscovery" parent="Base.V1.Theme.Application.NoActionBar" />
 
+    <style name="Base.V1.Theme.InstrumentPlayer" parent="Base.V1.Theme.Application.NoActionBar" />
+
 
     <!-- Base theme declarations -->
 
@@ -26,5 +28,7 @@
     <style name="Base.Theme.Application.NoActionBar" parent="Base.V1.Theme.Application.NoActionBar" />
 
     <style name="Base.Theme.MusicBoxDiscovery" parent="Base.V1.Theme.MusicBoxDiscovery" />
+
+    <style name="Base.Theme.InstrumentPlayer" parent="Base.V1.Theme.InstrumentPlayer" />
 
 </resources>
