@@ -7,6 +7,7 @@ import com.christiankula.rpimusicbox.remote.R
 class InstrumentPlayerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_instrument_player)
     }
