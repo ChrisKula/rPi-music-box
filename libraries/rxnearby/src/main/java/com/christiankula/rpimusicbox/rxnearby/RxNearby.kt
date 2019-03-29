@@ -4,10 +4,10 @@ import android.Manifest
 import android.content.Context
 import com.christiankula.rpimusicbox.rxnearby.advertise.AdvertisingEvent
 import com.christiankula.rpimusicbox.rxnearby.advertise.AdvertisingObservable
-import com.christiankula.rpimusicbox.rxnearby.connection.ConnectionLifecycleObservable
-import com.christiankula.rpimusicbox.rxnearby.connection.ConnectionStatus
 import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryEvent
 import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryEventObservable
+import com.christiankula.rpimusicbox.rxnearby.discovery.connection.DiscoveryConnectionEvent
+import com.christiankula.rpimusicbox.rxnearby.discovery.connection.DiscoveryConnectionObservable
 import com.google.android.gms.nearby.Nearby
 import com.google.android.gms.nearby.connection.ConnectionsClient
 import io.reactivex.Observable
@@ -32,8 +32,19 @@ class RxNearby(context: Context) {
         return DiscoveryEventObservable(connectionsClient).subscribeOn(Schedulers.io())
     }
 
-    fun requestConnection(endpointId: String, clientName: String): Observable<ConnectionStatus> {
-        return ConnectionLifecycleObservable(connectionsClient, endpointId, clientName).subscribeOn(Schedulers.io())
+    /**
+     * Start a connection with an advertiser and return an Observable of [DiscoveryConnectionEvent].
+     *
+     * It will try to connect to the advertiser with the given advertiser ID and the stream will emits
+     * connection status events. When it has connected successfully, it will also start emitting payloads from
+     * the advertiser.
+     *
+     * @param advertiserId the ID of the advertiser to connect to
+     * @param clientName the name of the client that will connect to the advertiser
+     *
+     */
+    fun observeDiscoveryConnection(advertiserId: String, clientName: String): Observable<DiscoveryConnectionEvent> {
+        return DiscoveryConnectionObservable(advertiserId, clientName, connectionsClient).subscribeOn(Schedulers.io())
     }
 
     /**
