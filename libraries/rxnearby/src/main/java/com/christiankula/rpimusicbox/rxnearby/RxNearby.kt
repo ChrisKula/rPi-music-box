@@ -2,11 +2,10 @@ package com.christiankula.rpimusicbox.rxnearby
 
 import android.Manifest
 import android.content.Context
-import com.christiankula.rpimusicbox.rxnearby.advertise.EndpointAdvertisingEvent
-import com.christiankula.rpimusicbox.rxnearby.advertise.EndpointAdvertisingEventObservable
+import com.christiankula.rpimusicbox.rxnearby.advertise.AdvertisingEvent
+import com.christiankula.rpimusicbox.rxnearby.advertise.AdvertisingObservable
 import com.christiankula.rpimusicbox.rxnearby.connection.ConnectionLifecycleObservable
 import com.christiankula.rpimusicbox.rxnearby.connection.ConnectionStatus
-import com.christiankula.rpimusicbox.rxnearby.connection.PayloadObservable
 import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryEvent
 import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryEventObservable
 import com.google.android.gms.nearby.Nearby
@@ -37,16 +36,16 @@ class RxNearby(context: Context) {
         return ConnectionLifecycleObservable(connectionsClient, endpointId, clientName).subscribeOn(Schedulers.io())
     }
 
-    // TODO Change the type of Observable (String -> Something else)
     /**
-     * Accept the connection to the given endpoint ID. It will start to send payload events down the
-     * stream if the connection was successful.
+     * Start advertising and return an Observable of [AdvertisingEvent]
+     *
+     * This stream will emit events from external clients that are discovering and that will
+     * try to connect to this advertiser. This advertiser will accept all incoming connections and will
+     * emit payloads coming from all external clients.
+     *
+     * @param advertiserName the name of this advertiser that will be shown to discovering endpoints
      */
-    fun acceptConnection(endpointId: String): Observable<String> {
-        return PayloadObservable(connectionsClient, endpointId).subscribeOn(Schedulers.io())
-    }
-
-    fun observeAdvertising(serverName: String): Observable<EndpointAdvertisingEvent> {
-        return EndpointAdvertisingEventObservable(connectionsClient, serverName).subscribeOn(Schedulers.io())
+    fun observeAdvertising(advertiserName: String): Observable<AdvertisingEvent> {
+        return AdvertisingObservable(advertiserName, connectionsClient).subscribeOn(Schedulers.io())
     }
 }
