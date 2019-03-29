@@ -38,6 +38,17 @@ class InstrumentPlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_instrument_player)
 
+        requireArguments()
+
+        viewModelFactory.init(getFoundMusicBoxFromIntent())
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(InstrumentPlayerViewModel::class.java)
     }
+
+    private fun requireArguments() {
+        if (getFoundMusicBoxFromIntent() == null) {
+            throw IllegalStateException("Can't start InstrumentPlayerActivity without providing a MusicBox")
+        }
+    }
+
+    private fun getFoundMusicBoxFromIntent() = intent.getParcelableExtra<MusicBox>(FOUND_MUSIC_BOX_EXTRA_KEY)
 }
