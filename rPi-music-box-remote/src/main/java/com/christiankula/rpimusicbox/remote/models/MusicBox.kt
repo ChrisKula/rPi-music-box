@@ -1,7 +1,7 @@
 package com.christiankula.rpimusicbox.remote.models
 
 import android.os.Parcelable
-import com.christiankula.rpimusicbox.nearby.Endpoint
+import com.christiankula.rpimusicbox.rxnearby.Endpoint
 import kotlinx.android.parcel.Parcelize
 
 /**

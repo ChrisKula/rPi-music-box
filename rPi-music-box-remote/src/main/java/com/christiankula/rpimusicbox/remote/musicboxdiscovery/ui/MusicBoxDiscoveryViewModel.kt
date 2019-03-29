@@ -10,13 +10,14 @@ import com.christiankula.rpimusicbox.remote.models.fromEndpoint
 import com.christiankula.rpimusicbox.remote.permission.NEARBY_API_PERMISSION
 import com.christiankula.rpimusicbox.remote.permission.PermissionManager
 import com.christiankula.rpimusicbox.rxnearby.RxNearby
-import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointDiscoveryInitiated
-import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointDiscoveryStarted
+import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryInitiated
+import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryStarted
 import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointFound
 import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointLost
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
+
 
 class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
                                  private val permissionManager: PermissionManager) : ViewModel() {
@@ -80,13 +81,13 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
 
     private fun observeEndpoints() {
         if (observeEndpointDiscoveryDisposable == null || observeEndpointDiscoveryDisposable?.isDisposed == true) {
-            observeEndpointDiscoveryDisposable = rxNearby.observeEndpointDiscovery()
+            observeEndpointDiscoveryDisposable = rxNearby.observeDiscovery()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         when (it) {
-                            is EndpointDiscoveryInitiated -> _stateLiveData.value = MusicBoxDiscoveryInitiated
+                            is DiscoveryInitiated -> _stateLiveData.value = MusicBoxDiscoveryInitiated
 
-                            is EndpointDiscoveryStarted -> _stateLiveData.value = MusicBoxDiscoveryStarted
+                            is DiscoveryStarted -> _stateLiveData.value = MusicBoxDiscoveryStarted
 
                             is EndpointFound -> {
                                 fromEndpoint(it.endpoint).also { musicBox ->

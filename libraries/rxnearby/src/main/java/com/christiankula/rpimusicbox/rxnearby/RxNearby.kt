@@ -7,10 +7,8 @@ import com.christiankula.rpimusicbox.rxnearby.advertise.EndpointAdvertisingEvent
 import com.christiankula.rpimusicbox.rxnearby.connection.ConnectionLifecycleObservable
 import com.christiankula.rpimusicbox.rxnearby.connection.ConnectionStatus
 import com.christiankula.rpimusicbox.rxnearby.connection.PayloadObservable
-import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointDiscoveryEvent
-import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointDiscoveryEventObservable
-import com.christiankula.rpimusicbox.rxnearby.discovery.exceptions.AlreadyDiscoveringEndpointsException
-import com.christiankula.rpimusicbox.rxnearby.discovery.exceptions.MissingAccessCoarseLocationPermissionException
+import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryEvent
+import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryEventObservable
 import com.google.android.gms.nearby.Nearby
 import com.google.android.gms.nearby.connection.ConnectionsClient
 import io.reactivex.Observable
@@ -23,7 +21,7 @@ class RxNearby(context: Context) {
     private val connectionsClient: ConnectionsClient = Nearby.getConnectionsClient(context)
 
     /**
-     * Start discovering endpoints and return an Observable of [EndpointDiscoveryEvent].
+     * Start discovering endpoints and return an Observable of [DiscoveryEvent].
      *
      * **Warning** : Only one Observable can be used at a time. If there's already a discovering ongoing,
      * the Observable will terminate with an [AlreadyDiscoveringEndpointsException].
@@ -31,8 +29,8 @@ class RxNearby(context: Context) {
      * Also, this call needs [Manifest.permission.ACCESS_COARSE_LOCATION], the Observable will terminate
      * with an [MissingAccessCoarseLocationPermissionException] if the permission hasn't been granted beforehand.
      */
-    fun observeEndpointDiscovery(): Observable<EndpointDiscoveryEvent> {
-        return EndpointDiscoveryEventObservable(connectionsClient).subscribeOn(Schedulers.io())
+    fun observeDiscovery(): Observable<DiscoveryEvent> {
+        return DiscoveryEventObservable(connectionsClient).subscribeOn(Schedulers.io())
     }
 
     fun requestConnection(endpointId: String, clientName: String): Observable<ConnectionStatus> {
