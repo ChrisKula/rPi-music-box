@@ -1,6 +1,7 @@
 package com.christiankula.rpimusicbox.nearby
 
 import android.Manifest
+import android.content.Context
 import com.christiankula.rpimusicbox.nearby.advertise.EndpointAdvertisingEvent
 import com.christiankula.rpimusicbox.nearby.advertise.EndpointAdvertisingEventObservable
 import com.christiankula.rpimusicbox.nearby.connection.ConnectionLifecycleObservable
@@ -10,13 +11,16 @@ import com.christiankula.rpimusicbox.nearby.discovery.EndpointDiscoveryEvent
 import com.christiankula.rpimusicbox.nearby.discovery.EndpointDiscoveryEventObservable
 import com.christiankula.rpimusicbox.nearby.discovery.exceptions.AlreadyDiscoveringEndpointsException
 import com.christiankula.rpimusicbox.nearby.discovery.exceptions.MissingAccessCoarseLocationPermissionException
+import com.google.android.gms.nearby.Nearby
 import com.google.android.gms.nearby.connection.ConnectionsClient
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
 internal const val SERVICE_ID = "RPI_MUSIC_BOX"
 
-class NearbyUsecase(private val connectionsClient: ConnectionsClient) {
+class NearbyUsecase(context: Context) {
+
+    private val connectionsClient: ConnectionsClient = Nearby.getConnectionsClient(context)
 
     /**
      * Start discovering endpoints and return an Observable of [EndpointDiscoveryEvent].
