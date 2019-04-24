@@ -1,7 +1,7 @@
 package com.christiankula.rpimusicbox.remote.nearby.injection
 
 import android.content.Context
-import com.christiankula.rpimusicbox.nearby.NearbyUsecase
+import com.christiankula.rpimusicbox.nearby.RxNearby
 import dagger.Module
 import dagger.Provides
 
@@ -9,7 +9,7 @@ import dagger.Provides
 class NearbyModule {
 
     @Provides
-    internal fun provideNearbyUsecase(context: Context): NearbyUsecase {
-        return NearbyUsecase(context)
+    internal fun provideRxNearby(context: Context): RxNearby {
+        return RxNearby(context)
     }
 }

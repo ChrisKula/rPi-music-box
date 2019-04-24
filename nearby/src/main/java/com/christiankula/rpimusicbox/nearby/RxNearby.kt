@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers
 
 internal const val SERVICE_ID = "RPI_MUSIC_BOX"
 
-class NearbyUsecase(context: Context) {
+class RxNearby(context: Context) {
 
     private val connectionsClient: ConnectionsClient = Nearby.getConnectionsClient(context)
 

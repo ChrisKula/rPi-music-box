@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.christiankula.rpimusicbox.androidcommons.livedata.SingleLiveEvent
 import com.christiankula.rpimusicbox.nearby.Endpoint
-import com.christiankula.rpimusicbox.nearby.NearbyUsecase
+import com.christiankula.rpimusicbox.nearby.RxNearby
 import com.christiankula.rpimusicbox.nearby.discovery.EndpointDiscoveryInitiated
 import com.christiankula.rpimusicbox.nearby.discovery.EndpointDiscoveryStarted
 import com.christiankula.rpimusicbox.nearby.discovery.EndpointFound
@@ -17,7 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
+class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
                                  private val permissionManager: PermissionManager) : ViewModel() {
 
     private val _stateLiveData = MutableLiveData<MusicBoxDiscoveryState>()
@@ -69,7 +69,7 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
 
     private fun observeEndpoints() {
         if (observeEndpointDiscoveryDisposable == null || observeEndpointDiscoveryDisposable?.isDisposed == true) {
-            observeEndpointDiscoveryDisposable = nearbyUsecase.observeEndpointDiscovery()
+            observeEndpointDiscoveryDisposable = rxNearby.observeEndpointDiscovery()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         when (it) {
@@ -101,12 +101,12 @@ class MusicBoxDiscoveryViewModel(private val nearbyUsecase: NearbyUsecase,
         observeEndpointDiscoveryDisposable?.dispose()
     }
 
-    class Factory @Inject constructor(private val nearbyUsecase: NearbyUsecase,
+    class Factory @Inject constructor(private val rxNearby: RxNearby,
                                       private val permissionManager: PermissionManager) : ViewModelProvider.Factory {
 
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MusicBoxDiscoveryViewModel(nearbyUsecase, permissionManager) as T
+            return MusicBoxDiscoveryViewModel(rxNearby, permissionManager) as T
         }
     }
 }
