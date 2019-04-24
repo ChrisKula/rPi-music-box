@@ -48,7 +48,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":androidcommons")
-    implementation project(":nearby")
+    implementation project(':rxnearby')
 
     implementation libraries.androidArchLifecycle
 

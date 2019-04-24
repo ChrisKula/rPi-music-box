@@ -1,7 +1,7 @@
 package com.christiankula.rpimusicbox.remote.nearby.injection
 
 import android.content.Context
-import com.christiankula.rpimusicbox.nearby.RxNearby
+import com.christiankula.rpimusicbox.rxnearby.RxNearby
 import dagger.Module
 import dagger.Provides
 
