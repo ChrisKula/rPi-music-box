@@ -48,7 +48,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":androidcommons")
-    implementation project(":nearby")
+    implementation project(':rxnearby')
 
     implementation libraries.androidArchLifecycle
 
@@ -63,8 +63,6 @@ dependencies {
     kapt libraries.daggerAndroidProcessor
 
     implementation libraries.kotlinStdLib
-
-    implementation libraries.nearby
 
     implementation libraries.rxJava2
     implementation libraries.rxJava2Android

@@ -1,6 +1,6 @@
 package com.christiankula.rpimusicbox.remote.musicboxdiscovery.ui
 
-import com.christiankula.rpimusicbox.nearby.Endpoint
+import com.christiankula.rpimusicbox.rxnearby.Endpoint
 
 sealed class MusicBoxDiscoveryState
 
