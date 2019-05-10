@@ -4,6 +4,7 @@ import com.christiankula.rpimusicbox.rxnearby.Endpoint
 
 sealed class DiscoveryConnectionEvent
 
+data class ConnectionRequested(val endpoint: Endpoint) : DiscoveryConnectionEvent()
 data class ConnectionInitiated(val endpoint: Endpoint) : DiscoveryConnectionEvent()
 data class ConnectionApproved(val endpointId: String) : DiscoveryConnectionEvent()
 data class ConnectionRejected(val endpointId: String) : DiscoveryConnectionEvent()
