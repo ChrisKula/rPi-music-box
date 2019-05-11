@@ -30,4 +30,9 @@
 
     <!-- Lost music box -->
     <string name="lost_music_box">\"%1$s\" music box has been lost</string>
+
+    <!-- Instrument player -->
+    <string name="instrument_player_connecting_to_music_box">Connecting to %1$s</string>
+    <string name="instrument_player_connection_initiated_with_music_box">Connection initiated with %1$s</string>
+    <string name="instrument_player_you_re_playing_as">Connected - you\'re playing as %1$s</string>
 </resources>
