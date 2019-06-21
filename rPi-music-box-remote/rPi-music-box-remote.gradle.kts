@@ -26,8 +26,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":androidcommons"))
-    implementation(project(":rxnearby"))
+    implementation(project(":libraries:androidcommons"))
+    implementation(project(":libraries:rxnearby"))
 
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.constraintLayout)

@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":commons"))
+    implementation(project(":libraries:commons"))
 
     implementation(Dependencies.kotlinStdLib)
 
