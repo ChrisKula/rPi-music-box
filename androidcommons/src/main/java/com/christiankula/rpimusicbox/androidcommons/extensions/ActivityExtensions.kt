@@ -3,10 +3,10 @@ package com.christiankula.rpimusicbox.androidcommons.extensions
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
-import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 
 /**
  * Convenient method to replace the container's Fragment, referenced by the given containerViewId,
