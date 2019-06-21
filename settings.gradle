@@ -1,1 +1,5 @@
-include ":rPi-music-box-things", ":rPi-music-box-remote", ":commons", ":androidcommons", ":rxnearby"
+include ":rPi-music-box-things"
+include ":rPi-music-box-remote"
+include ":rxnearby"
+include ":androidcommons"
+include ":commons"
