@@ -1,6 +1,6 @@
 object Versions {
 
-    const val kotlin = "1.3.21"
+    const val kotlin = "1.3.40"
 
     object AndroidX {
         const val appCompat = "1.0.2"
