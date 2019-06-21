@@ -1,9 +1,9 @@
 package com.christiankula.rpimusicbox.androidcommons.livedata
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
-import android.support.annotation.MainThread
+import androidx.annotation.MainThread
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
 
 class SingleLiveEvent<T> : MutableLiveData<T>() {
@@ -11,7 +11,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     private val isPending: AtomicBoolean = AtomicBoolean(false)
 
     @MainThread
-    override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
+    override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         // Observe the internal MutableLiveData
         super.observe(owner, Observer<T> {
             if (isPending.compareAndSet(true, false)) {
@@ -29,7 +29,6 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     /**
      * Used for cases where T is Void, to make calls cleaner
      */
-
     @MainThread
     fun call() {
         value = null

@@ -3,7 +3,7 @@ package com.christiankula.rpimusicbox.remote.permission
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import javax.inject.Inject
 
 const val NEARBY_API_PERMISSION: String = Manifest.permission.ACCESS_COARSE_LOCATION

@@ -1,9 +1,9 @@
 package com.christiankula.rpimusicbox.remote.musicboxdiscovery.ui
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.christiankula.rpimusicbox.androidcommons.livedata.SingleLiveEvent
 import com.christiankula.rpimusicbox.remote.permission.NEARBY_API_PERMISSION
 import com.christiankula.rpimusicbox.remote.permission.PermissionManager
