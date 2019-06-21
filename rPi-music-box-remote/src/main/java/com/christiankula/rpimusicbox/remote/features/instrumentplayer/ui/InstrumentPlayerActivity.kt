@@ -1,11 +1,11 @@
 package com.christiankula.rpimusicbox.remote.features.instrumentplayer.ui
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.christiankula.rpimusicbox.remote.R
 import com.christiankula.rpimusicbox.remote.models.MusicBox
 import dagger.android.AndroidInjection

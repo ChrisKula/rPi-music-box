@@ -2,7 +2,6 @@ package com.christiankula.rpimusicbox.remote.features.instrumentplayer.ui.custom
 
 import android.content.Context
 import android.graphics.Typeface
-import android.support.constraint.ConstraintLayout
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.StyleSpan
@@ -12,6 +11,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.christiankula.rpimusicbox.remote.R
 import kotlinx.android.synthetic.main.view_connection_status_bar.view.*
 import java.util.concurrent.TimeUnit

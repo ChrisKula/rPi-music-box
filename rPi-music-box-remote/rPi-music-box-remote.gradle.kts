@@ -25,7 +25,12 @@ android {
     }
 }
 
+androidExtensions {
+    isExperimental = true
+}
+
 dependencies {
+    implementation(project(":libraries:commons"))
     implementation(project(":libraries:androidcommons"))
     implementation(project(":libraries:rxnearby"))
 
