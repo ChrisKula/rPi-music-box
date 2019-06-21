@@ -8,6 +8,8 @@ object AndroidConfig {
     const val targetSdkVersion = 28
     const val minSdkVersion = 16
 
+    const val buildToolsVersion = "28.0.3"
+
     const val versionCode = versionMajor * 1000 + versionMinor * 100 + versionPatch * 10
     const val versionName = "$versionMajor.$versionMinor.$versionPatch"
 

@@ -6,18 +6,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AndroidConfig.compileSdkVersion)
-
     defaultConfig {
-        minSdkVersion(AndroidConfig.minSdkVersion)
-        targetSdkVersion(AndroidConfig.targetSdkVersion)
-
         applicationId = AndroidConfig.applicationId
 
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
 
-        testInstrumentationRunner = AndroidConfig.testInstrumentationRunner
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -27,11 +21,6 @@ android {
 
             versionNameSuffix = debugSuffix
             applicationIdSuffix = debugSuffix
-        }
-
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 }

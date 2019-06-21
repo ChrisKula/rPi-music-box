@@ -4,24 +4,6 @@ plugins {
     kotlin(Plugins.kotlinExtensions)
 }
 
-android {
-    compileSdkVersion(AndroidConfig.compileSdkVersion)
-
-    defaultConfig {
-        minSdkVersion(AndroidConfig.minSdkVersion)
-        targetSdkVersion(AndroidConfig.targetSdkVersion)
-
-        testInstrumentationRunner = AndroidConfig.testInstrumentationRunner
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
-}
-
 dependencies {
     implementation(project(":commons"))
 

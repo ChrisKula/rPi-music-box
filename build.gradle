@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath ClassPaths.androidGradlePlugin
+        classpath ClassPaths.kotlinPlugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+subprojects {
+    afterEvaluate { project ->
+
+        // Common configurations for all 'android' related modules
+        if (project.hasProperty("android")) {
+            android {
+                buildToolsVersion AndroidConfig.buildToolsVersion
+                compileSdkVersion AndroidConfig.compileSdkVersion
+
+                defaultConfig {
+                    minSdkVersion AndroidConfig.minSdkVersion
+                    targetSdkVersion AndroidConfig.targetSdkVersion
+                    testInstrumentationRunner AndroidConfig.testInstrumentationRunner
+                }
+
+                compileOptions {
+                    sourceCompatibility = JavaVersion.VERSION_1_8
+                    targetCompatibility = JavaVersion.VERSION_1_8
+                }
+
+                buildTypes {
+                    release {
+                        minifyEnabled false
+                        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                    }
+                }
+            }
+        }
+    }
+}
