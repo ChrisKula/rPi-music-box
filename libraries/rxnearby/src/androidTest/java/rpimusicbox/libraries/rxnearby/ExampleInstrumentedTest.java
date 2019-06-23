@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.rxnearby;
+package rpimusicbox.libraries.rxnearby;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

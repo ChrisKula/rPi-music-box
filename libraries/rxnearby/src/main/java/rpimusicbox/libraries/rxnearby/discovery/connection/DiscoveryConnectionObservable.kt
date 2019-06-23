@@ -1,7 +1,7 @@
-package com.christiankula.rpimusicbox.rxnearby.discovery.connection
+package rpimusicbox.libraries.rxnearby.discovery.connection
 
-import com.christiankula.rpimusicbox.rxnearby.Endpoint
-import com.christiankula.rpimusicbox.rxnearby.SERVICE_ID
+import rpimusicbox.libraries.rxnearby.Endpoint
+import rpimusicbox.libraries.rxnearby.SERVICE_ID
 import com.google.android.gms.nearby.connection.ConnectionsClient
 import io.reactivex.Observable
 import io.reactivex.Observer

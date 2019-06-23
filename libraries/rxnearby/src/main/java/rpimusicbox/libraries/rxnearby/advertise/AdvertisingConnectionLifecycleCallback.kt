@@ -1,16 +1,17 @@
-package com.christiankula.rpimusicbox.rxnearby.discovery.connection
+package rpimusicbox.libraries.rxnearby.advertise
 
-import com.christiankula.rpimusicbox.rxnearby.Endpoint
-import com.christiankula.rpimusicbox.rxnearby.SERVICE_ID
+import rpimusicbox.libraries.rxnearby.Endpoint
+import rpimusicbox.libraries.rxnearby.SERVICE_ID
 import com.google.android.gms.nearby.connection.*
 import io.reactivex.Observer
 
-internal class DiscoveryConnectionLifecycleCallback(private val observer: Observer<in DiscoveryConnectionEvent>,
-                                                    private val connectionsClient: ConnectionsClient)
+
+internal class AdvertisingConnectionLifecycleCallback(private val observer: Observer<in AdvertisingEvent>,
+                                                      private val connectionsClient: ConnectionsClient)
     : ConnectionLifecycleCallback() {
 
     override fun onConnectionInitiated(endpointId: String, connectionInfo: ConnectionInfo) {
-        connectionsClient.acceptConnection(endpointId, DiscoveryConnectionPayloadCallback(observer))
+        connectionsClient.acceptConnection(endpointId, AdvertisingPayloadCallback(observer))
         observer.onNext(ConnectionInitiated(Endpoint(endpointId, connectionInfo.endpointName, SERVICE_ID)))
     }
 

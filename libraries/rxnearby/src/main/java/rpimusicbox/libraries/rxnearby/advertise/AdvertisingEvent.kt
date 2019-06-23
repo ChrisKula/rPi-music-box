@@ -1,6 +1,6 @@
-package com.christiankula.rpimusicbox.rxnearby.advertise
+package rpimusicbox.libraries.rxnearby.advertise
 
-import com.christiankula.rpimusicbox.rxnearby.Endpoint
+import rpimusicbox.libraries.rxnearby.Endpoint
 
 sealed class AdvertisingEvent
 

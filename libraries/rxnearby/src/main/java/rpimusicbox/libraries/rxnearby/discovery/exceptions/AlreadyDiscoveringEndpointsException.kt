@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.rxnearby.discovery.exceptions
+package rpimusicbox.libraries.rxnearby.discovery.exceptions
 
 /**
  * Exception thrown when starting discovery whereas the [ConnectionsClient] is already discovering

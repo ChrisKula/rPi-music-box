@@ -1,7 +1,7 @@
 package rpimusicbox.features.discovery.injection
 
 import android.content.Context
-import com.christiankula.rpimusicbox.rxnearby.RxNearby
+import rpimusicbox.libraries.rxnearby.RxNearby
 import dagger.Module
 import dagger.Provides
 import rpimusicbox.libraries.permissions.PermissionsManager

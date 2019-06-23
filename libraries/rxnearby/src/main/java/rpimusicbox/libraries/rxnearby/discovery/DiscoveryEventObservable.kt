@@ -1,10 +1,10 @@
-package com.christiankula.rpimusicbox.rxnearby.discovery
+package rpimusicbox.libraries.rxnearby.discovery
 
 import rpimusicbox.libraries.commons.rxjava2.SimpleDisposable
-import com.christiankula.rpimusicbox.rxnearby.Endpoint
-import com.christiankula.rpimusicbox.rxnearby.SERVICE_ID
-import com.christiankula.rpimusicbox.rxnearby.discovery.exceptions.AlreadyDiscoveringEndpointsException
-import com.christiankula.rpimusicbox.rxnearby.discovery.exceptions.MissingAccessCoarseLocationPermissionException
+import rpimusicbox.libraries.rxnearby.Endpoint
+import rpimusicbox.libraries.rxnearby.SERVICE_ID
+import rpimusicbox.libraries.rxnearby.discovery.exceptions.AlreadyDiscoveringEndpointsException
+import rpimusicbox.libraries.rxnearby.discovery.exceptions.MissingAccessCoarseLocationPermissionException
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.nearby.connection.*
 import io.reactivex.Observable

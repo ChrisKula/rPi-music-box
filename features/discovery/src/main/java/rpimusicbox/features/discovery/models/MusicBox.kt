@@ -1,8 +1,8 @@
 package rpimusicbox.features.discovery.models
 
 import android.os.Parcelable
-import com.christiankula.rpimusicbox.rxnearby.Endpoint
 import kotlinx.android.parcel.Parcelize
+import rpimusicbox.libraries.rxnearby.Endpoint
 
 /**
  * Data class representing a music box a client can interact with

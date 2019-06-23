@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.rxnearby.advertise
+package rpimusicbox.libraries.rxnearby.advertise
 
 import com.google.android.gms.nearby.connection.Payload
 import com.google.android.gms.nearby.connection.PayloadCallback

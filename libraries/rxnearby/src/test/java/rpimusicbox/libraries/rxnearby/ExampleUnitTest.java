@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.rxnearby;
+package rpimusicbox.libraries.rxnearby;
 
 import org.junit.Test;
 

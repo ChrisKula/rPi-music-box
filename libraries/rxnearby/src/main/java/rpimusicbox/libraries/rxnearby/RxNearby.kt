@@ -1,13 +1,13 @@
-package com.christiankula.rpimusicbox.rxnearby
+package rpimusicbox.libraries.rxnearby
 
 import android.Manifest
 import android.content.Context
-import com.christiankula.rpimusicbox.rxnearby.advertise.AdvertisingEvent
-import com.christiankula.rpimusicbox.rxnearby.advertise.AdvertisingObservable
-import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryEvent
-import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryEventObservable
-import com.christiankula.rpimusicbox.rxnearby.discovery.connection.DiscoveryConnectionEvent
-import com.christiankula.rpimusicbox.rxnearby.discovery.connection.DiscoveryConnectionObservable
+import rpimusicbox.libraries.rxnearby.advertise.AdvertisingEvent
+import rpimusicbox.libraries.rxnearby.advertise.AdvertisingObservable
+import rpimusicbox.libraries.rxnearby.discovery.DiscoveryEvent
+import rpimusicbox.libraries.rxnearby.discovery.DiscoveryEventObservable
+import rpimusicbox.libraries.rxnearby.discovery.connection.DiscoveryConnectionEvent
+import rpimusicbox.libraries.rxnearby.discovery.connection.DiscoveryConnectionObservable
 import com.google.android.gms.nearby.Nearby
 import com.google.android.gms.nearby.connection.ConnectionsClient
 import io.reactivex.Observable

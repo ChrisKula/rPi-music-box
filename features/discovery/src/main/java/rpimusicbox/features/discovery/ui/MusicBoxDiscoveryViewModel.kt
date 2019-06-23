@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import rpimusicbox.libraries.androidcommons.livedata.SingleLiveEvent
-import com.christiankula.rpimusicbox.rxnearby.RxNearby
-import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryInitiated
-import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryStarted
-import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointFound
-import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointLost
+import rpimusicbox.libraries.rxnearby.RxNearby
+import rpimusicbox.libraries.rxnearby.discovery.DiscoveryInitiated
+import rpimusicbox.libraries.rxnearby.discovery.DiscoveryStarted
+import rpimusicbox.libraries.rxnearby.discovery.EndpointFound
+import rpimusicbox.libraries.rxnearby.discovery.EndpointLost
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import rpimusicbox.features.discovery.NEARBY_API_PERMISSION

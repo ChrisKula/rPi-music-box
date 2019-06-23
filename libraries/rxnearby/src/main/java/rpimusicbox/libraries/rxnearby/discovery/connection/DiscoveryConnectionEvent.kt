@@ -1,6 +1,6 @@
-package com.christiankula.rpimusicbox.rxnearby.discovery.connection
+package rpimusicbox.libraries.rxnearby.discovery.connection
 
-import com.christiankula.rpimusicbox.rxnearby.Endpoint
+import rpimusicbox.libraries.rxnearby.Endpoint
 
 sealed class DiscoveryConnectionEvent
 
