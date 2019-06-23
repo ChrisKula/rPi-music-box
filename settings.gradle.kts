@@ -4,6 +4,7 @@ include(":features:discovery")
 
 include(":libraries:rxnearby")
 include(":libraries:androidcommons")
+include(":libraries:permissions")
 include(":libraries:commons")
 
 setBuildFilesName(rootProject)
