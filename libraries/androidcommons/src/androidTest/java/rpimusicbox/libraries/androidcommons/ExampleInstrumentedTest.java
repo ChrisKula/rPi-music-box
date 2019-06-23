@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.androidcommons;
+package rpimusicbox.libraries.androidcommons;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

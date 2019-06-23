@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.christiankula.rpimusicbox.androidcommons.livedata.SingleLiveEvent
+import rpimusicbox.libraries.androidcommons.livedata.SingleLiveEvent
 import com.christiankula.rpimusicbox.rxnearby.RxNearby
 import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryInitiated
 import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryStarted

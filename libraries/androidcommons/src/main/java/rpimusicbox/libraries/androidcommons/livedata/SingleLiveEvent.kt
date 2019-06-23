@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.androidcommons.livedata
+package rpimusicbox.libraries.androidcommons.livedata
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner

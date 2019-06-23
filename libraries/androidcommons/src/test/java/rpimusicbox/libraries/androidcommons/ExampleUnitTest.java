@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.androidcommons;
+package rpimusicbox.libraries.androidcommons;
 
 import org.junit.Test;
 

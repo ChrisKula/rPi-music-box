@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.christiankula.rpimusicbox.androidcommons.extensions.findFragmentByTag
-import com.christiankula.rpimusicbox.androidcommons.extensions.goToAppSettings
-import com.christiankula.rpimusicbox.androidcommons.extensions.replaceFragment
+import rpimusicbox.libraries.androidcommons.extensions.findFragmentByTag
+import rpimusicbox.libraries.androidcommons.extensions.goToAppSettings
+import rpimusicbox.libraries.androidcommons.extensions.replaceFragment
 import dagger.android.AndroidInjection
 import rpimusicbox.features.discovery.NEARBY_API_PERMISSION
 import rpimusicbox.features.discovery.R
