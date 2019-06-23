@@ -1,27 +1,14 @@
 plugins {
-    id(Plugins.androidApplication)
+    id(Plugins.androidLibrary)
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinExtensions)
     kotlin(Plugins.kapt)
 }
 
+
 android {
     defaultConfig {
-        applicationId = AndroidConfig.applicationId
-
-        versionCode = AndroidConfig.versionCode
-        versionName = AndroidConfig.versionName
-
         vectorDrawables.useSupportLibrary = true
-    }
-
-    buildTypes {
-        getByName("debug") {
-            val debugSuffix = ".debug"
-
-            versionNameSuffix = debugSuffix
-            applicationIdSuffix = debugSuffix
-        }
     }
 }
 
@@ -30,8 +17,13 @@ androidExtensions {
 }
 
 dependencies {
-    implementation(project(":features:discovery"))
-    implementation(project(":features:instrumentplayer"))
+    implementation(project(":libraries:commons"))
+    implementation(project(":libraries:androidcommons"))
+    api(project(":libraries:rxnearby"))
+
+    implementation(Dependencies.AndroidX.appCompat)
+    implementation(Dependencies.AndroidX.constraintLayout)
+    implementation(Dependencies.AndroidX.lifecycleExtensions)
 
     implementation(Dependencies.Dagger2.dagger)
     kapt(Dependencies.Dagger2.compiler)
@@ -41,7 +33,9 @@ dependencies {
 
     implementation(Dependencies.kotlinStdLib)
 
-    implementation(Dependencies.timber)
+    implementation(Dependencies.rxJava2)
+    implementation(Dependencies.rxJava2Android)
+    implementation(Dependencies.rxJava2Kotlin)
 
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.testRunner)

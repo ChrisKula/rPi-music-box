@@ -1,16 +1,16 @@
-package com.christiankula.rpimusicbox.remote.features.instrumentplayer.ui
+package rpimusicbox.features.instrumentplayer.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.christiankula.rpimusicbox.commons.extensions.disposeBy
-import com.christiankula.rpimusicbox.commons.randomanimal.generateRandomAnimalName
-import com.christiankula.rpimusicbox.remote.models.MusicBox
-import com.christiankula.rpimusicbox.rxnearby.RxNearby
-import com.christiankula.rpimusicbox.rxnearby.discovery.connection.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import rpimusicbox.features.instrumentplayer.ui.InstrumentPlayerState.*
+import rpimusicbox.libraries.commons.extensions.disposeBy
+import rpimusicbox.libraries.commons.randomanimal.generateRandomAnimalName
+import rpimusicbox.libraries.rxnearby.RxNearby
+import rpimusicbox.libraries.rxnearby.discovery.connection.*
 import javax.inject.Inject
 
 class InstrumentPlayerViewModel(foundMusicBox: MusicBox, rxNearby: RxNearby) : ViewModel() {

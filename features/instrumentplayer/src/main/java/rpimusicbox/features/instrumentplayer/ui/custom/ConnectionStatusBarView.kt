@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.remote.features.instrumentplayer.ui.custom
+package rpimusicbox.features.instrumentplayer.ui.custom
 
 import android.content.Context
 import android.graphics.Typeface
@@ -12,8 +12,8 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.christiankula.rpimusicbox.remote.R
 import kotlinx.android.synthetic.main.view_connection_status_bar.view.*
+import rpimusicbox.features.instrumentplayer.R
 import java.util.concurrent.TimeUnit
 
 private val STATUS_ICON_ROTATION_ANIMATION_DURATION_MS = TimeUnit.SECONDS.toMillis(1)
@@ -27,7 +27,7 @@ private val STATUS_ICON_ROTATION_ANIMATION = RotateAnimation(0.0f, 360.0f,
     repeatCount = Animation.INFINITE
 }
 
-class ConnectionStatusBarView : ConstraintLayout {
+internal class ConnectionStatusBarView : ConstraintLayout {
 
     constructor(context: Context) : super(context) {
         inflateView(context)

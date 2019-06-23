@@ -1,6 +1,7 @@
 include(":rPi-music-box-remote")
 
 include(":features:discovery")
+include(":features:instrumentplayer")
 
 include(":libraries:rxnearby")
 include(":libraries:androidcommons")

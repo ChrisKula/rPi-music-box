@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.remote.features.instrumentplayer.ui
+package rpimusicbox.features.instrumentplayer.ui
 
 import android.content.Context
 import android.content.Intent
@@ -6,10 +6,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.christiankula.rpimusicbox.remote.R
-import com.christiankula.rpimusicbox.remote.models.MusicBox
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_instrument_player.*
+import rpimusicbox.features.instrumentplayer.R
+import rpimusicbox.features.instrumentplayer.ui.InstrumentPlayerState.*
 import javax.inject.Inject
 
 private const val FOUND_MUSIC_BOX_EXTRA_KEY = "FOUND_MUSIC_BOX"
