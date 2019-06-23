@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.commons.extensions
+package rpimusicbox.libraries.commons.extensions
 
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

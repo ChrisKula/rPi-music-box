@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.commons.rxjava2
+package rpimusicbox.libraries.commons.rxjava2
 
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.atomic.AtomicBoolean

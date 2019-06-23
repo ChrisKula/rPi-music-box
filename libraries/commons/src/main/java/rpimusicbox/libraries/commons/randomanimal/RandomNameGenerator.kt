@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.commons.randomanimal
+package rpimusicbox.libraries.commons.randomanimal
 
 import kotlin.random.Random
 

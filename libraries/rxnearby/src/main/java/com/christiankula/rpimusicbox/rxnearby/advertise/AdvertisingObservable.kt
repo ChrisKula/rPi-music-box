@@ -1,12 +1,12 @@
 package com.christiankula.rpimusicbox.rxnearby.advertise
 
-import com.christiankula.rpimusicbox.commons.rxjava2.SimpleDisposable
 import com.christiankula.rpimusicbox.rxnearby.SERVICE_ID
 import com.google.android.gms.nearby.connection.AdvertisingOptions
 import com.google.android.gms.nearby.connection.ConnectionsClient
 import com.google.android.gms.nearby.connection.Strategy
 import io.reactivex.Observable
 import io.reactivex.Observer
+import rpimusicbox.libraries.commons.rxjava2.SimpleDisposable
 
 internal class AdvertisingObservable(private val advertiserName: String,
                                      private val connectionsClient: ConnectionsClient) : Observable<AdvertisingEvent>() {

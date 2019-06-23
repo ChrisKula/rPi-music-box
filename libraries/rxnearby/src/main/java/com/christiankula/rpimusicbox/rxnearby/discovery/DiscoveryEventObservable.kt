@@ -1,6 +1,6 @@
 package com.christiankula.rpimusicbox.rxnearby.discovery
 
-import com.christiankula.rpimusicbox.commons.rxjava2.SimpleDisposable
+import rpimusicbox.libraries.commons.rxjava2.SimpleDisposable
 import com.christiankula.rpimusicbox.rxnearby.Endpoint
 import com.christiankula.rpimusicbox.rxnearby.SERVICE_ID
 import com.christiankula.rpimusicbox.rxnearby.discovery.exceptions.AlreadyDiscoveringEndpointsException

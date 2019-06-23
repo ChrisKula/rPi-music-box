@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.commons.randomanimal
+package rpimusicbox.libraries.commons.randomanimal
 
 internal val adjectives = listOf("Abaft",
         "Abandoned",
