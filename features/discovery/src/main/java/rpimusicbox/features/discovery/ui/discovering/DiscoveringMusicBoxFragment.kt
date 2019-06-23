@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.remote.musicboxdiscovery.discovering.ui
+package rpimusicbox.features.discovery.ui.discovering
 
 import android.content.Context
 import android.os.Bundle
@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.christiankula.rpimusicbox.remote.R
 import kotlinx.android.synthetic.main.fragment_discovering_music_box.*
+import rpimusicbox.features.discovery.R
 
-class DiscoveringMusicBoxFragment : Fragment() {
+internal class DiscoveringMusicBoxFragment : Fragment() {
 
     companion object {
         val TAG: String = DiscoveringMusicBoxFragment::class.java.simpleName

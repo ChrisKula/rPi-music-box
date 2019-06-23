@@ -30,9 +30,7 @@ androidExtensions {
 }
 
 dependencies {
-    implementation(project(":libraries:commons"))
-    implementation(project(":libraries:androidcommons"))
-    implementation(project(":libraries:rxnearby"))
+    implementation(project(":features:discovery"))
 
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.constraintLayout)
@@ -45,10 +43,6 @@ dependencies {
     kapt(Dependencies.Dagger2.androidProcessor)
 
     implementation(Dependencies.kotlinStdLib)
-
-    implementation(Dependencies.rxJava2)
-    implementation(Dependencies.rxJava2Android)
-    implementation(Dependencies.rxJava2Kotlin)
 
     implementation(Dependencies.timber)
 

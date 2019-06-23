@@ -1,4 +1,4 @@
-package com.christiankula.rpimusicbox.remote.models
+package rpimusicbox.features.discovery.models
 
 import android.os.Parcelable
 import com.christiankula.rpimusicbox.rxnearby.Endpoint

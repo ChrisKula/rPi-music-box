@@ -1,14 +1,10 @@
-package com.christiankula.rpimusicbox.remote.musicboxdiscovery.ui
+package rpimusicbox.features.discovery.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.christiankula.rpimusicbox.androidcommons.livedata.SingleLiveEvent
-import com.christiankula.rpimusicbox.remote.models.MusicBox
-import com.christiankula.rpimusicbox.remote.models.fromEndpoint
-import com.christiankula.rpimusicbox.remote.permission.NEARBY_API_PERMISSION
-import com.christiankula.rpimusicbox.remote.permission.PermissionManager
 import com.christiankula.rpimusicbox.rxnearby.RxNearby
 import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryInitiated
 import com.christiankula.rpimusicbox.rxnearby.discovery.DiscoveryStarted
@@ -16,11 +12,15 @@ import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointFound
 import com.christiankula.rpimusicbox.rxnearby.discovery.EndpointLost
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import rpimusicbox.features.discovery.NEARBY_API_PERMISSION
+import rpimusicbox.features.discovery.models.MusicBox
+import rpimusicbox.features.discovery.models.fromEndpoint
+import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.*
+import rpimusicbox.libraries.permissions.PermissionsManager
 import javax.inject.Inject
 
-
 class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
-                                 private val permissionManager: PermissionManager) : ViewModel() {
+                                 private val permissionManager: PermissionsManager) : ViewModel() {
 
     private val _stateLiveData = MutableLiveData<MusicBoxDiscoveryState>()
 
@@ -35,13 +35,15 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
     val permissionRequestLiveData: LiveData<String>
         get() = _permissionRequestLiveData
 
-    private val _navigationLiveData = SingleLiveEvent<MusicBoxDiscoveryNavigation>()
+    // TODO Handle navigation
+//    private val _navigationLiveData = SingleLiveEvent<MusicBoxDiscoveryNavigation>()
 
     /**
      * Emits events related to navigation from this View
      */
-    val navigationLiveData: LiveData<MusicBoxDiscoveryNavigation>
-        get() = _navigationLiveData
+//    val navigationLiveData: LiveData<MusicBoxDiscoveryNavigation>
+//    val navigationLiveData: LiveData<MusicBoxDiscoveryNavigation>
+//        get() = _navigationLiveData
 
     private var observeEndpointDiscoveryDisposable: Disposable? = null
 
@@ -52,7 +54,7 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
     private var foundMusicBox: MusicBox? = null
 
     fun onSearchMusicBoxButtonClicked() {
-        if (permissionManager.hasPermissionsForNearby()) {
+        if (permissionManager.hasPermission(NEARBY_API_PERMISSION)) {
             observeEndpoints()
         } else {
             _permissionRequestLiveData.value = NEARBY_API_PERMISSION
@@ -75,7 +77,8 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
 
     fun onConnectToMusicBoxButtonClicked() {
         foundMusicBox?.let {
-            _navigationLiveData.value = MusicBoxDiscoveryNavigation.NavigateToInstrumentPlayer(it)
+            // TODO Handle navigation
+//            _navigationLiveData.value = MusicBoxDiscoveryNavigation.NavigateToInstrumentPlayer(it)
         }
     }
 
@@ -116,11 +119,11 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
     }
 
     class Factory @Inject constructor(private val rxNearby: RxNearby,
-                                      private val permissionManager: PermissionManager) : ViewModelProvider.Factory {
+                                      private val permissionsManager: PermissionsManager) : ViewModelProvider.Factory {
 
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MusicBoxDiscoveryViewModel(rxNearby, permissionManager) as T
+            return MusicBoxDiscoveryViewModel(rxNearby, permissionsManager) as T
         }
     }
 }
