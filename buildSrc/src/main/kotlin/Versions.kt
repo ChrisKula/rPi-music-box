@@ -13,6 +13,8 @@ object Versions {
 
     const val googlePlayServices = "12.0.1"
 
+    const val materialComponents = "1.1.0-alpha07"
+
     // RxJava
     const val rxJava2 = "2.2.9"
     const val rxJava2Android = "2.1.1"

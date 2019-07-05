@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base widget styles implementations -->
+    <style name="Base.V1.Widget.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">?attr/colorSecondary</item>
+    </style>
+
+    <style name="Base.V1.Widget.Button.Borderless" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?attr/colorSecondary</item>
+        <item name="rippleColor">?attr/colorSecondary</item>
+    </style>
+
+    <!-- Base widget styles declarations -->
+    <style name="Base.Widget.Button" parent="Base.V1.Widget.Button" />
+
+    <style name="Base.Widget.Button.Borderless" parent="Base.V1.Widget.Button.Borderless" />
+
+</resources>
