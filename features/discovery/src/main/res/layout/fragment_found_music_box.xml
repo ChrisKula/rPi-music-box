@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/discovery_default_fragment_padding"
+    tools:context=".ui.MusicBoxDiscoveryActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/discovery_section_icon_height"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name"
+        android:minHeight="@dimen/discovery_section_icon_height"
+        app:srcCompat="@drawable/ic_music_note_color_primary_24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/found_music_box_found_music_box"
+        android:textAlignment="center"
+        android:textAppearance="?textAppearanceHeadline5" />
+
+    <TextView
+        android:id="@+id/foundMusicBoxName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?textAppearanceHeadline4"
+        android:textStyle="bold|italic"
+        tools:text="Raspberry Pi Music Box" />
+
+    <!--FIXME Remove useless 'tools:style' when bug in Material Components has been fixed -->
+    <!-- There's currently a bug with Material Components that crashes the layout preview if there's a -->
+    <!-- regular Button in the layout. -->
+    <!-- Applying a different style with 'tools' prevent this crash -->
+    <Button
+        android:id="@+id/connectToMusicBoxButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/discovery_button_search_margin_top"
+        android:text="@string/found_music_box_connect"
+        tools:style="?borderlessButtonStyle" />
+</LinearLayout>

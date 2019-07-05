@@ -1,6 +1,6 @@
 object Versions {
 
-    const val kotlin = "1.3.21"
+    const val kotlin = "1.3.40"
 
     object AndroidX {
         const val appCompat = "1.0.2"
@@ -12,6 +12,8 @@ object Versions {
     const val dagger2 = "2.23.1"
 
     const val googlePlayServices = "12.0.1"
+
+    const val materialComponents = "1.1.0-alpha07"
 
     // RxJava
     const val rxJava2 = "2.2.9"

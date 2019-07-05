@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="Widget.Button" parent="Base.Widget.Button" />
-
-    <style name="Widget.Button.Borderless" parent="Base.Widget.Button.Borderless" />
-</resources>

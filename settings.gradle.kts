@@ -1,6 +1,13 @@
 include(":rPi-music-box-remote")
+
+include(":core:design")
+
+include(":features:discovery")
+include(":features:instrumentplayer")
+
 include(":libraries:rxnearby")
 include(":libraries:androidcommons")
+include(":libraries:permissions")
 include(":libraries:commons")
 
 setBuildFilesName(rootProject)

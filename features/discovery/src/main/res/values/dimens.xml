@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="discovery_section_icon_height">100dp</dimen>
+
+    <dimen name="discovery_button_search_margin_top">16dp</dimen>
+
+    <dimen name="discovery_default_fragment_padding">16dp</dimen>
+</resources>

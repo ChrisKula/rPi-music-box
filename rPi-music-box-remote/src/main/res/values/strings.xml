@@ -1,33 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">rPi Music Box Remote</string>
-
-    <!-- Start Music Box Discovery -->
-    <string name="start_music_box_discovery_main_description">Play music on a nearby rPi music box!</string>
-    <string name="start_music_box_discovery_sub_description">Search a nearby rPi music box</string>
-
-    <string name="start_music_box_discovery_button_search">Search</string>
-
-    <!-- Nearby API permission -->
-    <string name="music_box_discovery_nearby_api_permission_rationale_dialog_title">Coarse location permission required</string>
-    <string name="music_box_discovery_nearby_api_permission_rationale_dialog_message">The app needs access to coarse location in order to be able to search for nearby music box.\n\nYou also need to know that the app hasn\'t access to your real location, it has only access to the device\'s location relative to other devices (using WiFi and Bluetooth).</string>
-
-    <string name="music_box_discovery_nearby_api_permission_rationale_dialog_positive_button_ask_again">Ask again</string>
-
-    <string name="music_box_discovery_nearby_api_permission_denied_dialog_message">The app can\'t search for nearby music box unless it has been granted the permission to access to coarse location.\n\nYou can go to app\'s settings screen to change that.</string>
-    <string name="music_box_discovery_nearby_api_permission_denied_dialog_positive_button_go_to_app_settings">Go to app settings</string>
-
-    <!-- Discovering -->
-    <string name="discovering_music_box_search_in_progress">Search in progress…</string>
-    <string name="discovering_music_box_button_cancel">Cancel</string>
-
-    <!--Discovering failed -->
-    <string name="music_box_discovery_failed_message">Something bad happened while trying to search for a music box</string>
-    <string name="music_box_discovery_failed_button_retry">Retry</string>
-
-    <!-- Found music box -->
-    <string name="found_music_box_found_music_box">Found music box</string>
-    <string name="found_music_box_connect">Connect</string>
-
-    <!-- Lost music box -->
-    <string name="lost_music_box">\"%1$s\" music box has been lost</string>
 </resources>

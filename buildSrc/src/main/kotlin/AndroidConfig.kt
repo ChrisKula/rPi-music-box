@@ -6,7 +6,7 @@ object AndroidConfig {
     const val applicationId = "com.christiankula.rpimusicbox"
     const val compileSdkVersion = 28
     const val targetSdkVersion = 28
-    const val minSdkVersion = 16
+    const val minSdkVersion = 21
 
     const val buildToolsVersion = "28.0.3"
 

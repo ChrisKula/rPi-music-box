@@ -18,6 +18,8 @@ object Dependencies {
         const val androidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger2}"
     }
 
+    const val materialComponents = "com.google.android.material:material:${Versions.materialComponents}"
+
     const val nearby = "com.google.android.gms:play-services-nearby:${Versions.googlePlayServices}"
 
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"

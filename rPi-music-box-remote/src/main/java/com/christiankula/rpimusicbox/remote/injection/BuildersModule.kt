@@ -1,9 +1,9 @@
 package com.christiankula.rpimusicbox.remote.injection
 
-import com.christiankula.rpimusicbox.remote.musicboxdiscovery.injection.MusicBoxDiscoveryActivityModule
-import com.christiankula.rpimusicbox.remote.musicboxdiscovery.ui.MusicBoxDiscoveryActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import rpimusicbox.features.discovery.injection.MusicBoxDiscoveryActivityModule
+import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryActivity
 
 @Module
 abstract class BuildersModule {

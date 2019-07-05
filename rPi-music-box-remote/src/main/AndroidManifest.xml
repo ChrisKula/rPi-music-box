@@ -18,14 +18,13 @@
         android:supportsRtl="true">
 
         <activity
-            android:name=".musicboxdiscovery.ui.MusicBoxDiscoveryActivity"
+            android:name="rpimusicbox.features.discovery.ui.MusicBoxDiscoveryActivity"
             android:theme="@style/Theme.MusicBoxDiscovery">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

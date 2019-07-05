@@ -25,13 +25,13 @@ android {
     }
 }
 
-dependencies {
-    implementation(project(":libraries:androidcommons"))
-    implementation(project(":libraries:rxnearby"))
+androidExtensions {
+    isExperimental = true
+}
 
-    implementation(Dependencies.AndroidX.appCompat)
-    implementation(Dependencies.AndroidX.constraintLayout)
-    implementation(Dependencies.AndroidX.lifecycleExtensions)
+dependencies {
+    implementation(project(":features:discovery"))
+    implementation(project(":features:instrumentplayer"))
 
     implementation(Dependencies.Dagger2.dagger)
     kapt(Dependencies.Dagger2.compiler)
@@ -40,10 +40,6 @@ dependencies {
     kapt(Dependencies.Dagger2.androidProcessor)
 
     implementation(Dependencies.kotlinStdLib)
-
-    implementation(Dependencies.rxJava2)
-    implementation(Dependencies.rxJava2Android)
-    implementation(Dependencies.rxJava2Kotlin)
 
     implementation(Dependencies.timber)
 
