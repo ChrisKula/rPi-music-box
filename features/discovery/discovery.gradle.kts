@@ -17,6 +17,8 @@ androidExtensions {
 }
 
 dependencies {
+    implementation(project(":core:design"))
+
     implementation(project(":libraries:androidcommons"))
     api(project(":libraries:rxnearby"))
     api(project(":libraries:permissions"))

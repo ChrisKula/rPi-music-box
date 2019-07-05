@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/discovery_default_fragment_padding"
     tools:context=".ui.MusicBoxDiscoveryActivity">
 
     <ImageView
@@ -20,9 +20,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/music_box_discovery_failed_message"
-        android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+        android:textAppearance="?textAppearanceHeadline5" />
 
     <Button
         android:id="@+id/retryMusicBoxSearchButton"

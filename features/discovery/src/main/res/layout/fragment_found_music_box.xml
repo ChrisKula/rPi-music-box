@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:padding="@dimen/discovery_default_fragment_padding"
     tools:context=".ui.MusicBoxDiscoveryActivity">
 
     <ImageView
@@ -21,20 +22,25 @@
         android:layout_height="wrap_content"
         android:text="@string/found_music_box_found_music_box"
         android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+        android:textAppearance="?textAppearanceHeadline5" />
 
     <TextView
         android:id="@+id/foundMusicBoxName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textAppearance="?textAppearanceHeadline4"
         android:textStyle="bold|italic"
         tools:text="Raspberry Pi Music Box" />
 
+    <!--FIXME Remove useless 'tools:style' when bug in Material Components has been fixed -->
+    <!-- There's currently a bug with Material Components that crashes the layout preview if there's a -->
+    <!-- regular Button in the layout. -->
+    <!-- Applying a different style with 'tools' prevent this crash -->
     <Button
         android:id="@+id/connectToMusicBoxButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/button_search_margin_top"
-        android:text="@string/found_music_box_connect" />
+        android:text="@string/found_music_box_connect"
+        tools:style="?borderlessButtonStyle" />
 </LinearLayout>

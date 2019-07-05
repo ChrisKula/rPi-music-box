@@ -6,6 +6,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
+    android:padding="@dimen/discovery_default_fragment_padding"
     tools:context=".ui.MusicBoxDiscoveryActivity">
 
     <TextView
@@ -13,10 +14,10 @@
         android:layout_height="wrap_content"
         android:text="@string/discovering_music_box_search_in_progress"
         android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+        android:textAppearance="?textAppearanceHeadline5" />
 
     <ProgressBar
-        style="?android:attr/progressBarStyle"
+        style="?progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

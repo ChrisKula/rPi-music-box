@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:padding="@dimen/discovery_default_fragment_padding"
     tools:context=".ui.MusicBoxDiscoveryActivity">
 
     <ImageView
@@ -19,21 +20,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/start_music_box_discovery_main_description"
-        android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+        android:textAppearance="?textAppearanceHeadline5" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/start_music_box_discovery_sub_description"
-        android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+        android:textAppearance="?textAppearanceBody1" />
 
+    <!--FIXME Remove useless 'tools:style' when bug in Material Components has been fixed -->
+    <!-- There's currently a bug with Material Components that crashes the layout preview if there's a -->
+    <!-- regular Button in the layout. -->
+    <!-- Applying a different style with 'tools' prevent this crash -->
     <Button
         android:id="@+id/searchMusicBoxButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/button_search_margin_top"
-        android:text="@string/start_music_box_discovery_button_search" />
+        android:text="@string/start_music_box_discovery_button_search"
+        tools:style="?borderlessButtonStyle" />
 </LinearLayout>

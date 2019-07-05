@@ -1,1 +1,8 @@
-<manifest package="rpimusicbox.features.discovery" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="rpimusicbox.features.discovery">
+
+    <application android:theme="@style/Theme.Application">
+        <activity android:name=".ui.MusicBoxDiscoveryActivity" />
+    </application>
+
+</manifest>
