@@ -15,7 +15,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
         android:minHeight="@dimen/discovery_section_icon_height"
-        app:srcCompat="@drawable/ic_discovering_failed_green_24dp" />
+        app:srcCompat="@drawable/ic_discovering_failed_color_primary_24dp" />
 
     <TextView
         android:layout_width="wrap_content"
