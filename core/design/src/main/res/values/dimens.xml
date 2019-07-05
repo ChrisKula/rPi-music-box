@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="core_design_margin_8dp">8dp</dimen>
+
+    <dimen name="core_design_padding_8dp">8dp</dimen>
 </resources>

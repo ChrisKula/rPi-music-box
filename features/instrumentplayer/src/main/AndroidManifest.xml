@@ -1,1 +1,10 @@
-<manifest package="rpimusicbox.features.instrumentplayer" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="rpimusicbox.features.instrumentplayer">
+
+    <application android:theme="@style/Theme.Application">
+        <activity
+            android:name=".ui.InstrumentPlayerActivity"
+            android:theme="@style/Theme.InstrumentPlayer" />
+    </application>
+
+</manifest>
