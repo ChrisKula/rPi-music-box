@@ -11,10 +11,10 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/section_icon_height"
+        android:layout_height="@dimen/discovery_section_icon_height"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
-        android:minHeight="@dimen/section_icon_height"
+        android:minHeight="@dimen/discovery_section_icon_height"
         app:srcCompat="@drawable/ic_discovering_green_24dp" />
 
     <TextView
@@ -39,7 +39,7 @@
         android:id="@+id/searchMusicBoxButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/button_search_margin_top"
+        android:layout_marginTop="@dimen/discovery_button_search_margin_top"
         android:text="@string/start_music_box_discovery_button_search"
         tools:style="?borderlessButtonStyle" />
 </LinearLayout>
