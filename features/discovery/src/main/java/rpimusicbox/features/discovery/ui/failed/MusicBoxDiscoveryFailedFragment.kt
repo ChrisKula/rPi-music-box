@@ -1,4 +1,4 @@
-package rpimusicbox.features.discovery.ui.start
+package rpimusicbox.features.discovery.ui.failed
 
 import android.os.Bundle
 import android.view.LayoutInflater

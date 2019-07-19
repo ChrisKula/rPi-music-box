@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/discoveryFailedFragment"
-        android:name="rpimusicbox.features.discovery.ui.start.MusicBoxDiscoveryFailedFragment"
+        android:name="rpimusicbox.features.discovery.ui.failed.MusicBoxDiscoveryFailedFragment"
         android:label="Failed discovery"
         tools:layout="@layout/fragment_music_box_discovery_failed" >
         <action
