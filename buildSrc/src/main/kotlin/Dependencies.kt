@@ -8,6 +8,8 @@ object Dependencies {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
         const val lifecycleExtensions =
                 "androidx.lifecycle:lifecycle-extensions:${Versions.AndroidX.lifecycleExtensions}"
+        const val navigation = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
+        const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
     }
 
     object Dagger2 {

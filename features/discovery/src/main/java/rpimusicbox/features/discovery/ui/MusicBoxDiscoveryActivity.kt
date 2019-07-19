@@ -6,28 +6,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import rpimusicbox.libraries.androidcommons.extensions.findFragmentByTag
-import rpimusicbox.libraries.androidcommons.extensions.goToAppSettings
-import rpimusicbox.libraries.androidcommons.extensions.replaceFragment
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import dagger.android.AndroidInjection
 import rpimusicbox.features.discovery.NEARBY_API_PERMISSION
 import rpimusicbox.features.discovery.R
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.*
-import rpimusicbox.features.discovery.ui.discovering.DiscoveringMusicBoxFragment
-import rpimusicbox.features.discovery.ui.found.FoundMusicBoxFragment
-import rpimusicbox.features.discovery.ui.start.MusicBoxDiscoveryFailedFragment
-import rpimusicbox.features.discovery.ui.start.StartMusicBoxDiscoveryFragment
+import rpimusicbox.features.discovery.ui.discovering.DiscoveringMusicBoxFragmentDirections
+import rpimusicbox.libraries.androidcommons.extensions.goToAppSettings
+import rpimusicbox.libraries.commons.extensions.exhaustive
 import rpimusicbox.libraries.permissions.PermissionRequestResult
 import rpimusicbox.libraries.permissions.PermissionsManager
 import javax.inject.Inject
 
 private const val NEARBY_API_PERMISSION_REQUEST_CODE = 3105
 
-class MusicBoxDiscoveryActivity : AppCompatActivity(),
-        StartMusicBoxDiscoveryFragment.InteractionListener,
-        DiscoveringMusicBoxFragment.InteractionListener,
-        MusicBoxDiscoveryFailedFragment.InteractionListener,
-        FoundMusicBoxFragment.InteractionListener {
+class MusicBoxDiscoveryActivity : AppCompatActivity() {
 
     @Inject
     lateinit var permissionsManager: PermissionsManager
@@ -36,6 +30,9 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
     lateinit var viewModelFactory: MusicBoxDiscoveryViewModel.Factory
 
     private lateinit var viewModel: MusicBoxDiscoveryViewModel
+
+    private val navController: NavController
+        get() = findNavController(R.id.discovery_nav_host_fragment)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -46,30 +43,38 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
 
         viewModel.stateLiveData.observe(this, Observer { state ->
             when (state) {
-                is StartMusicBoxDiscovery -> {
-                    replaceFragment(R.id.mainContent, StartMusicBoxDiscoveryFragment.newInstance(), StartMusicBoxDiscoveryFragment.TAG)
+                StartMusicBoxDiscovery -> {
+                    // Do nothing
                 }
 
-                is MusicBoxDiscoveryInitiated -> {
-                    findFragmentByTag<StartMusicBoxDiscoveryFragment>(StartMusicBoxDiscoveryFragment.TAG)?.setSearchMusicBoxButtonEnabled(false)
+                MusicBoxDiscoveryInitiated -> {
+                    // Do nothing
                 }
 
-                is MusicBoxDiscoveryStarted -> {
-                    replaceFragment(R.id.mainContent, DiscoveringMusicBoxFragment.newInstance(), DiscoveringMusicBoxFragment.TAG)
+                MusicBoxDiscoveryStarted -> {
+                    navController.navigate(R.id.action_startDiscoveryFragment_to_discoveringFragment)
                 }
 
-                is MusicBoxDiscoveryFailed -> {
-                    replaceFragment(R.id.mainContent, MusicBoxDiscoveryFailedFragment.newInstance(), MusicBoxDiscoveryFailedFragment.TAG)
+                MusicBoxDiscoveryFailed -> {
+                    navController.navigate(R.id.action_startDiscoveryFragment_to_discoveryFailedFragment)
+                }
+
+                MusicBoxDiscoveryCancelled -> {
+                    navController.navigate(R.id.action_discoveringFragment_to_startDiscoveryFragment)
+                }
+
+                MusicBoxDiscoveryRetried -> {
+                    navController.navigate(R.id.action_discoveryFailedFragment_to_startDiscoveryFragment)
                 }
 
                 is MusicBoxFound -> {
-                    replaceFragment(R.id.mainContent, FoundMusicBoxFragment.newInstance(state.musicBox.name), FoundMusicBoxFragment.TAG)
+                    navController.navigate(DiscoveringMusicBoxFragmentDirections.actionDiscoveringFragmentToMusicBoxFoundFragment(state.musicBox.name))
                 }
 
                 is MusicBoxLost -> {
-                    replaceFragment(R.id.mainContent, DiscoveringMusicBoxFragment.newInstance(state.musicBox.name), DiscoveringMusicBoxFragment.TAG)
+                    //TODO Implement info message display
                 }
-            }
+            }.exhaustive
         })
 
         viewModel.permissionRequestLiveData.observe(this, Observer { permission ->
@@ -92,22 +97,6 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
         when (requestCode) {
             NEARBY_API_PERMISSION_REQUEST_CODE -> handleNearbyApiPermissionRequestResult(grantResults)
         }
-    }
-
-    override fun onSearchMusicBoxButtonClick() {
-        viewModel.onSearchMusicBoxButtonClicked()
-    }
-
-    override fun onCancelMusicBoxSearchButtonClick() {
-        viewModel.onCancelMusicBoxSearchButtonClicked()
-    }
-
-    override fun onRetryMusicBoxSearchButtonClick() {
-        viewModel.onRetryMusicBoxSearchButtonClicked()
-    }
-
-    override fun onConnectToMusicBoxButtonClick() {
-        viewModel.onConnectToMusicBoxButtonClicked()
     }
 
     private fun requestNearbyApiPermission() {

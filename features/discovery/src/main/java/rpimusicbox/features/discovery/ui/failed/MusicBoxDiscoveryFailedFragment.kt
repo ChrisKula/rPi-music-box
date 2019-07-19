@@ -1,4 +1,4 @@
-package rpimusicbox.features.discovery.ui.found
+package rpimusicbox.features.discovery.ui.failed
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,27 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.navArgs
-import kotlinx.android.synthetic.main.fragment_found_music_box.*
+import kotlinx.android.synthetic.main.fragment_music_box_discovery_failed.*
 import rpimusicbox.features.discovery.R
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryViewModel
 
-internal class FoundMusicBoxFragment : Fragment() {
+internal class MusicBoxDiscoveryFailedFragment : Fragment() {
 
     private lateinit var viewModel: MusicBoxDiscoveryViewModel
 
-    private val navArgs: FoundMusicBoxFragmentArgs by navArgs()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_found_music_box, container, false)
+        return inflater.inflate(R.layout.fragment_music_box_discovery_failed, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        connectToMusicBoxButton.setOnClickListener { viewModel.onConnectToMusicBoxButtonClicked() }
-
-        foundMusicBoxName.text = navArgs.foundMusicBoxName
+        retryMusicBoxSearchButton.setOnClickListener { viewModel.onRetryMusicBoxSearchButtonClicked() }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

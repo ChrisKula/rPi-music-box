@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/discovery_graph"
+    android:label="Discovering"
+    app:startDestination="@id/startDiscoveryFragment">
+
+    <fragment
+        android:id="@+id/startDiscoveryFragment"
+        android:name="rpimusicbox.features.discovery.ui.start.StartMusicBoxDiscoveryFragment"
+        android:label="Start Discovery"
+        tools:layout="@layout/fragment_start_music_box_discovery">
+        <action
+            android:id="@+id/action_startDiscoveryFragment_to_discoveringFragment"
+            app:destination="@id/discoveringFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/startDiscoveryFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_startDiscoveryFragment_to_discoveryFailedFragment"
+            app:destination="@id/discoveryFailedFragment"
+            app:popUpTo="@+id/discoveringFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/discoveringFragment"
+        android:name="rpimusicbox.features.discovery.ui.discovering.DiscoveringMusicBoxFragment"
+        android:label="Discovering"
+        tools:layout="@layout/fragment_discovering_music_box" >
+        <action
+            android:id="@+id/action_discoveringFragment_to_startDiscoveryFragment"
+            app:destination="@id/startDiscoveryFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/discoveringFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_discoveringFragment_to_musicBoxFoundFragment"
+            app:destination="@id/musicBoxFoundFragment"
+            app:popUpTo="@+id/discoveringFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/discoveryFailedFragment"
+        android:name="rpimusicbox.features.discovery.ui.failed.MusicBoxDiscoveryFailedFragment"
+        android:label="Failed discovery"
+        tools:layout="@layout/fragment_music_box_discovery_failed" >
+        <action
+            android:id="@+id/action_discoveryFailedFragment_to_startDiscoveryFragment"
+            app:destination="@id/startDiscoveryFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/discoveryFailedFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/musicBoxFoundFragment"
+        android:name="rpimusicbox.features.discovery.ui.found.FoundMusicBoxFragment"
+        android:label="Found music box"
+        tools:layout="@layout/fragment_found_music_box">
+        <argument
+            android:name="foundMusicBoxName"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

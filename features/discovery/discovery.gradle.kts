@@ -3,6 +3,7 @@ plugins {
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinExtensions)
     kotlin(Plugins.kapt)
+    id(Plugins.navigationSafeArgsKotlin)
 }
 
 
@@ -19,12 +20,15 @@ androidExtensions {
 dependencies {
     implementation(project(":core:design"))
 
+    implementation(project(":libraries:commons"))
     implementation(project(":libraries:androidcommons"))
     api(project(":libraries:rxnearby"))
     api(project(":libraries:permissions"))
 
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.AndroidX.lifecycleExtensions)
+    implementation(Dependencies.AndroidX.navigation)
+    implementation(Dependencies.AndroidX.navigationFragment)
 
     implementation(Dependencies.Dagger2.dagger)
     kapt(Dependencies.Dagger2.compiler)

@@ -5,6 +5,8 @@ object Plugins {
     const val androidFeature = "com.android.feature"
     const val androidLibrary = "com.android.library"
 
+    const val navigationSafeArgsKotlin = "androidx.navigation.safeargs.kotlin"
+
     // Kotlin plugins
     // Usage: Replace `apply plugin: 'kotlin-X'` by `kotlin(X)`
     const val kotlin = "jvm"
