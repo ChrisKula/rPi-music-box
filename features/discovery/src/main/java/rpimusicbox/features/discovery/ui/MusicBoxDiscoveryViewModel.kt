@@ -16,6 +16,7 @@ import rpimusicbox.features.discovery.NEARBY_API_PERMISSION
 import rpimusicbox.features.discovery.models.MusicBox
 import rpimusicbox.features.discovery.models.fromEndpoint
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.*
+import rpimusicbox.libraries.commons.extensions.isNullOrDisposed
 import rpimusicbox.libraries.permissions.PermissionsManager
 import javax.inject.Inject
 
@@ -83,7 +84,7 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
     }
 
     private fun observeEndpoints() {
-        if (observeEndpointDiscoveryDisposable == null || observeEndpointDiscoveryDisposable?.isDisposed == true) {
+        if (observeEndpointDiscoveryDisposable.isNullOrDisposed()) {
             observeEndpointDiscoveryDisposable = rxNearby.observeDiscovery()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
