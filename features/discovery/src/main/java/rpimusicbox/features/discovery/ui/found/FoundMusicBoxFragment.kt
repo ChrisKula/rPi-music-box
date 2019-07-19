@@ -1,13 +1,14 @@
 package rpimusicbox.features.discovery.ui.found
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_found_music_box.*
 import rpimusicbox.features.discovery.R
+import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryViewModel
 
 internal class FoundMusicBoxFragment : Fragment() {
     companion object {
@@ -22,7 +23,7 @@ internal class FoundMusicBoxFragment : Fragment() {
         }
     }
 
-    private var interactionListener: InteractionListener? = null
+    private lateinit var viewModel: MusicBoxDiscoveryViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,29 +38,15 @@ internal class FoundMusicBoxFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        connectToMusicBoxButton.setOnClickListener { interactionListener?.onConnectToMusicBoxButtonClick() }
+        connectToMusicBoxButton.setOnClickListener { viewModel.onConnectToMusicBoxButtonClicked() }
 
         foundMusicBoxName.text = arguments!!.getString(FOUND_MUSIC_BOX_NAME_KEY)
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
-        if (context is InteractionListener) {
-            interactionListener = context
-        } else {
-            throw RuntimeException("$context must implement InteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-
-        interactionListener = null
-    }
-
-    interface InteractionListener {
-        fun onConnectToMusicBoxButtonClick()
+        viewModel = ViewModelProviders.of(requireActivity()).get(MusicBoxDiscoveryViewModel::class.java)
     }
 
     private fun validateBundle(bundle: Bundle?) {
