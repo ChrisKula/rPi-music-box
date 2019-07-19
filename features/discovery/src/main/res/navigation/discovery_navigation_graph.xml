@@ -70,7 +70,7 @@
         android:label="Found music box"
         tools:layout="@layout/fragment_found_music_box">
         <argument
-            android:name="FOUND_MUSIC_BOX_NAME"
+            android:name="foundMusicBoxName"
             app:argType="string" />
     </fragment>
 
