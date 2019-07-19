@@ -6,9 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import rpimusicbox.libraries.androidcommons.extensions.findFragmentByTag
-import rpimusicbox.libraries.androidcommons.extensions.goToAppSettings
-import rpimusicbox.libraries.androidcommons.extensions.replaceFragment
 import dagger.android.AndroidInjection
 import rpimusicbox.features.discovery.NEARBY_API_PERMISSION
 import rpimusicbox.features.discovery.R
@@ -17,6 +14,8 @@ import rpimusicbox.features.discovery.ui.discovering.DiscoveringMusicBoxFragment
 import rpimusicbox.features.discovery.ui.found.FoundMusicBoxFragment
 import rpimusicbox.features.discovery.ui.start.MusicBoxDiscoveryFailedFragment
 import rpimusicbox.features.discovery.ui.start.StartMusicBoxDiscoveryFragment
+import rpimusicbox.libraries.androidcommons.extensions.goToAppSettings
+import rpimusicbox.libraries.androidcommons.extensions.replaceFragment
 import rpimusicbox.libraries.permissions.PermissionRequestResult
 import rpimusicbox.libraries.permissions.PermissionsManager
 import javax.inject.Inject
@@ -24,7 +23,6 @@ import javax.inject.Inject
 private const val NEARBY_API_PERMISSION_REQUEST_CODE = 3105
 
 class MusicBoxDiscoveryActivity : AppCompatActivity(),
-        StartMusicBoxDiscoveryFragment.InteractionListener,
         DiscoveringMusicBoxFragment.InteractionListener,
         MusicBoxDiscoveryFailedFragment.InteractionListener,
         FoundMusicBoxFragment.InteractionListener {
@@ -48,10 +46,6 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
             when (state) {
                 is StartMusicBoxDiscovery -> {
                     replaceFragment(R.id.mainContent, StartMusicBoxDiscoveryFragment.newInstance(), StartMusicBoxDiscoveryFragment.TAG)
-                }
-
-                is MusicBoxDiscoveryInitiated -> {
-                    findFragmentByTag<StartMusicBoxDiscoveryFragment>(StartMusicBoxDiscoveryFragment.TAG)?.setSearchMusicBoxButtonEnabled(false)
                 }
 
                 is MusicBoxDiscoveryStarted -> {
@@ -92,10 +86,6 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
         when (requestCode) {
             NEARBY_API_PERMISSION_REQUEST_CODE -> handleNearbyApiPermissionRequestResult(grantResults)
         }
-    }
-
-    override fun onSearchMusicBoxButtonClick() {
-        viewModel.onSearchMusicBoxButtonClicked()
     }
 
     override fun onCancelMusicBoxSearchButtonClick() {

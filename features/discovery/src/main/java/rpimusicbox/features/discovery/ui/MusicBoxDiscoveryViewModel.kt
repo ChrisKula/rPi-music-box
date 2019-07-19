@@ -48,11 +48,11 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
 
     private var observeEndpointDiscoveryDisposable: Disposable? = null
 
+    private var foundMusicBox: MusicBox? = null
+
     init {
         _stateLiveData.value = StartMusicBoxDiscovery
     }
-
-    private var foundMusicBox: MusicBox? = null
 
     fun onSearchMusicBoxButtonClicked() {
         if (permissionManager.hasPermission(NEARBY_API_PERMISSION)) {
