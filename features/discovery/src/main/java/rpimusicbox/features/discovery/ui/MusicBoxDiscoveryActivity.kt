@@ -23,7 +23,6 @@ import javax.inject.Inject
 private const val NEARBY_API_PERMISSION_REQUEST_CODE = 3105
 
 class MusicBoxDiscoveryActivity : AppCompatActivity(),
-        DiscoveringMusicBoxFragment.InteractionListener,
         MusicBoxDiscoveryFailedFragment.InteractionListener,
         FoundMusicBoxFragment.InteractionListener {
 
@@ -86,10 +85,6 @@ class MusicBoxDiscoveryActivity : AppCompatActivity(),
         when (requestCode) {
             NEARBY_API_PERMISSION_REQUEST_CODE -> handleNearbyApiPermissionRequestResult(grantResults)
         }
-    }
-
-    override fun onCancelMusicBoxSearchButtonClick() {
-        viewModel.onCancelMusicBoxSearchButtonClicked()
     }
 
     override fun onRetryMusicBoxSearchButtonClick() {
