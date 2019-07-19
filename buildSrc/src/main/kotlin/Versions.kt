@@ -7,6 +7,7 @@ object Versions {
         const val ktxCore = "1.0.1"
         const val constraintLayout = "1.1.3"
         const val lifecycleExtensions = "2.0.0"
+        const val navigation = "2.0.0"
     }
 
     const val dagger2 = "2.23.1"
@@ -31,4 +32,5 @@ object Versions {
 
     // Plugins
     const val gradlePlugin = "3.3.2"
+    const val navigationSafeArgsPlugin = "2.0.0"
 }
