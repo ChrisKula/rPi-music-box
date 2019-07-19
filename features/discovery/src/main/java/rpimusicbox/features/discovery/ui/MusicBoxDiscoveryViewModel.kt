@@ -4,20 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import rpimusicbox.libraries.androidcommons.livedata.SingleLiveEvent
-import rpimusicbox.libraries.rxnearby.RxNearby
-import rpimusicbox.libraries.rxnearby.discovery.DiscoveryInitiated
-import rpimusicbox.libraries.rxnearby.discovery.DiscoveryStarted
-import rpimusicbox.libraries.rxnearby.discovery.EndpointFound
-import rpimusicbox.libraries.rxnearby.discovery.EndpointLost
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import rpimusicbox.features.discovery.NEARBY_API_PERMISSION
 import rpimusicbox.features.discovery.models.MusicBox
 import rpimusicbox.features.discovery.models.fromEndpoint
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.*
+import rpimusicbox.libraries.androidcommons.livedata.SingleLiveEvent
 import rpimusicbox.libraries.commons.extensions.isNullOrDisposed
 import rpimusicbox.libraries.permissions.PermissionsManager
+import rpimusicbox.libraries.rxnearby.RxNearby
+import rpimusicbox.libraries.rxnearby.discovery.DiscoveryInitiated
+import rpimusicbox.libraries.rxnearby.discovery.DiscoveryStarted
+import rpimusicbox.libraries.rxnearby.discovery.EndpointFound
+import rpimusicbox.libraries.rxnearby.discovery.EndpointLost
 import javax.inject.Inject
 
 class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
@@ -69,10 +69,12 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
     fun onCancelMusicBoxSearchButtonClicked() {
         observeEndpointDiscoveryDisposable?.dispose()
 
-        _stateLiveData.value = StartMusicBoxDiscovery
+        _stateLiveData.value = MusicBoxDiscoveryCancelled
     }
 
     fun onRetryMusicBoxSearchButtonClicked() {
+        _stateLiveData.value = MusicBoxDiscoveryRetried
+
         observeEndpoints()
     }
 

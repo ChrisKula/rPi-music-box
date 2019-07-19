@@ -10,18 +10,9 @@ import kotlinx.android.synthetic.main.fragment_found_music_box.*
 import rpimusicbox.features.discovery.R
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryViewModel
 
+private const val FOUND_MUSIC_BOX_NAME_KEY = "FOUND_MUSIC_BOX_NAME"
+
 internal class FoundMusicBoxFragment : Fragment() {
-    companion object {
-        val TAG: String = FoundMusicBoxFragment::class.java.simpleName
-
-        private const val FOUND_MUSIC_BOX_NAME_KEY = "FOUND_MUSIC_BOX_NAME"
-
-        fun newInstance(musicBoxName: String) = FoundMusicBoxFragment().apply {
-            arguments = Bundle().apply {
-                putString(FOUND_MUSIC_BOX_NAME_KEY, musicBoxName)
-            }
-        }
-    }
 
     private lateinit var viewModel: MusicBoxDiscoveryViewModel
 

@@ -19,9 +19,19 @@ sealed class MusicBoxDiscoveryState {
     object MusicBoxDiscoveryStarted : MusicBoxDiscoveryState()
 
     /**
+     * Music box discovery has been cancelled by the user
+     */
+    object MusicBoxDiscoveryCancelled : MusicBoxDiscoveryState()
+
+    /**
      * Something bad happened during music box discovery initialization
      */
     object MusicBoxDiscoveryFailed : MusicBoxDiscoveryState()
+
+    /**
+     * A previously failed music box discovery start has been retried
+     */
+    object MusicBoxDiscoveryRetried : MusicBoxDiscoveryState()
 
     /**
      * A music box has been found

@@ -12,12 +12,6 @@ import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryViewModel
 
 internal class MusicBoxDiscoveryFailedFragment : Fragment() {
 
-    companion object {
-        val TAG: String = MusicBoxDiscoveryFailedFragment::class.java.simpleName
-
-        fun newInstance(): MusicBoxDiscoveryFailedFragment = MusicBoxDiscoveryFailedFragment()
-    }
-
     private lateinit var viewModel: MusicBoxDiscoveryViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

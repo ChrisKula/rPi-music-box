@@ -9,17 +9,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_start_music_box_discovery.*
 import rpimusicbox.features.discovery.R
+import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.MusicBoxDiscoveryInitiated
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.StartMusicBoxDiscovery
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryViewModel
 
 internal class StartMusicBoxDiscoveryFragment : Fragment() {
-
-    companion object {
-        val TAG: String = StartMusicBoxDiscoveryFragment::class.java.simpleName
-
-        fun newInstance(): StartMusicBoxDiscoveryFragment = StartMusicBoxDiscoveryFragment()
-    }
 
     private lateinit var viewModel: MusicBoxDiscoveryViewModel
 
@@ -43,6 +38,9 @@ internal class StartMusicBoxDiscoveryFragment : Fragment() {
                 StartMusicBoxDiscovery -> searchMusicBoxButton.isEnabled = true
 
                 MusicBoxDiscoveryInitiated -> searchMusicBoxButton.isEnabled = false
+
+                // It will retrigger discovering
+                MusicBoxDiscoveryState.MusicBoxDiscoveryRetried -> searchMusicBoxButton.performClick()
             }
         })
     }
