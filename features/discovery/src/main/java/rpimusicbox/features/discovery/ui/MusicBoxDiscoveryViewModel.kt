@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import rpimusicbox.features.discovery.NEARBY_API_PERMISSION
+import rpimusicbox.features.discovery.DISCOVERY_PERMISSION
 import rpimusicbox.features.discovery.models.MusicBox
 import rpimusicbox.features.discovery.models.fromEndpoint
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.*
@@ -55,10 +55,10 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
     }
 
     fun onSearchMusicBoxButtonClicked() {
-        if (permissionManager.hasPermission(NEARBY_API_PERMISSION)) {
+        if (permissionManager.hasPermission(DISCOVERY_PERMISSION)) {
             observeEndpoints()
         } else {
-            _permissionRequestLiveData.value = NEARBY_API_PERMISSION
+            _permissionRequestLiveData.value = DISCOVERY_PERMISSION
         }
     }
 
