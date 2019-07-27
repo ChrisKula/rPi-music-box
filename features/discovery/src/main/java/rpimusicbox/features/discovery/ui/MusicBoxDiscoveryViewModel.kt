@@ -6,22 +6,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import rpimusicbox.features.discovery.NEARBY_API_PERMISSION
+import rpimusicbox.features.discovery.DISCOVERY_PERMISSION
 import rpimusicbox.features.discovery.models.MusicBox
-import rpimusicbox.features.discovery.models.fromEndpoint
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.*
+import rpimusicbox.features.discovery.usecase.DiscoveryUsecase
+import rpimusicbox.features.discovery.usecase.MusicBoxDiscoveryEvent
 import rpimusicbox.libraries.androidcommons.livedata.SingleLiveEvent
+import rpimusicbox.libraries.commons.extensions.exhaustive
 import rpimusicbox.libraries.commons.extensions.isNullOrDisposed
-import rpimusicbox.libraries.permissions.PermissionsManager
-import rpimusicbox.libraries.rxnearby.RxNearby
-import rpimusicbox.libraries.rxnearby.discovery.DiscoveryInitiated
-import rpimusicbox.libraries.rxnearby.discovery.DiscoveryStarted
-import rpimusicbox.libraries.rxnearby.discovery.EndpointFound
-import rpimusicbox.libraries.rxnearby.discovery.EndpointLost
 import javax.inject.Inject
 
-class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
-                                 private val permissionManager: PermissionsManager) : ViewModel() {
+class MusicBoxDiscoveryViewModel(private val discoveryUsecase: DiscoveryUsecase) : ViewModel() {
 
     private val _stateLiveData = MutableLiveData<MusicBoxDiscoveryState>()
 
@@ -55,10 +50,10 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
     }
 
     fun onSearchMusicBoxButtonClicked() {
-        if (permissionManager.hasPermission(NEARBY_API_PERMISSION)) {
+        if (discoveryUsecase.hasPermissionForDiscovery()) {
             observeEndpoints()
         } else {
-            _permissionRequestLiveData.value = NEARBY_API_PERMISSION
+            _permissionRequestLiveData.value = DISCOVERY_PERMISSION
         }
     }
 
@@ -87,30 +82,29 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
 
     private fun observeEndpoints() {
         if (observeEndpointDiscoveryDisposable.isNullOrDisposed()) {
-            observeEndpointDiscoveryDisposable = rxNearby.observeDiscovery()
+            observeEndpointDiscoveryDisposable = discoveryUsecase.observeMusicBoxDiscovery()
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        when (it) {
-                            is DiscoveryInitiated -> _stateLiveData.value = MusicBoxDiscoveryInitiated
+                    .subscribe({ event ->
+                        when (event) {
+                            MusicBoxDiscoveryEvent.DiscoveryInitiated -> _stateLiveData.value = MusicBoxDiscoveryInitiated
 
-                            is DiscoveryStarted -> _stateLiveData.value = MusicBoxDiscoveryStarted
+                            MusicBoxDiscoveryEvent.DiscoveryStarted -> _stateLiveData.value = MusicBoxDiscoveryStarted
 
-                            is EndpointFound -> {
-                                fromEndpoint(it.endpoint).also { musicBox ->
-                                    foundMusicBox = musicBox
-                                    _stateLiveData.value = MusicBoxFound(musicBox)
+                            is MusicBoxDiscoveryEvent.MusicBoxFound -> {
+                                foundMusicBox = event.foundMusicBox.also {
+                                    _stateLiveData.value = MusicBoxFound(it)
                                 }
                             }
 
-                            is EndpointLost -> {
-                                foundMusicBox?.let { musicBox ->
-                                    if (it.id == musicBox.id) {
-                                        _stateLiveData.value = MusicBoxLost(musicBox.copy())
-                                        foundMusicBox = null
-                                    }
+                            is MusicBoxDiscoveryEvent.MusicBoxLost -> {
+                                if (event.lostMusicBoxId == foundMusicBox?.id) {
+                                    _stateLiveData.value = MusicBoxLost(foundMusicBox!!.copy())
+                                    foundMusicBox = null
                                 }
+
+                                Unit
                             }
-                        }
+                        }.exhaustive
                     }, {
                         _stateLiveData.value = MusicBoxDiscoveryFailed
                     })
@@ -121,12 +115,11 @@ class MusicBoxDiscoveryViewModel(private val rxNearby: RxNearby,
         observeEndpointDiscoveryDisposable?.dispose()
     }
 
-    class Factory @Inject constructor(private val rxNearby: RxNearby,
-                                      private val permissionsManager: PermissionsManager) : ViewModelProvider.Factory {
+    class Factory @Inject constructor(private val discoveryUsecase: DiscoveryUsecase) : ViewModelProvider.Factory {
 
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MusicBoxDiscoveryViewModel(rxNearby, permissionsManager) as T
+            return MusicBoxDiscoveryViewModel(discoveryUsecase) as T
         }
     }
 }

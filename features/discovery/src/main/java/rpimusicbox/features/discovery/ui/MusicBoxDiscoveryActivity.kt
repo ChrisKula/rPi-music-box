@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import dagger.android.AndroidInjection
-import rpimusicbox.features.discovery.NEARBY_API_PERMISSION
+import rpimusicbox.features.discovery.DISCOVERY_PERMISSION
 import rpimusicbox.features.discovery.R
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.*
 import rpimusicbox.features.discovery.ui.discovering.DiscoveringMusicBoxFragmentDirections
@@ -19,7 +19,7 @@ import rpimusicbox.libraries.permissions.PermissionRequestResult
 import rpimusicbox.libraries.permissions.PermissionsManager
 import javax.inject.Inject
 
-private const val NEARBY_API_PERMISSION_REQUEST_CODE = 3105
+private const val DISCOVERY_PERMISSION_REQUEST_CODE = 3105
 
 class MusicBoxDiscoveryActivity : AppCompatActivity() {
 
@@ -79,7 +79,7 @@ class MusicBoxDiscoveryActivity : AppCompatActivity() {
 
         viewModel.permissionRequestLiveData.observe(this, Observer { permission ->
             when (permission) {
-                NEARBY_API_PERMISSION -> requestNearbyApiPermission()
+                DISCOVERY_PERMISSION -> requestDiscoveryPermission()
             }
         })
 
@@ -95,36 +95,36 @@ class MusicBoxDiscoveryActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
-            NEARBY_API_PERMISSION_REQUEST_CODE -> handleNearbyApiPermissionRequestResult(grantResults)
+            DISCOVERY_PERMISSION_REQUEST_CODE -> handleDiscoveryPermissionRequestResult(grantResults)
         }
     }
 
-    private fun requestNearbyApiPermission() {
-        ActivityCompat.requestPermissions(this, arrayOf(NEARBY_API_PERMISSION), NEARBY_API_PERMISSION_REQUEST_CODE)
+    private fun requestDiscoveryPermission() {
+        ActivityCompat.requestPermissions(this, arrayOf(DISCOVERY_PERMISSION), DISCOVERY_PERMISSION_REQUEST_CODE)
     }
 
-    private fun handleNearbyApiPermissionRequestResult(grantResults: IntArray) {
-        return when (permissionsManager.handlePermissionRequestResult(this, NEARBY_API_PERMISSION, grantResults)) {
+    private fun handleDiscoveryPermissionRequestResult(grantResults: IntArray) {
+        return when (permissionsManager.handlePermissionRequestResult(this, DISCOVERY_PERMISSION, grantResults)) {
             PermissionRequestResult.PermissionGranted -> viewModel.onNearbyApiPermissionGranted()
-            PermissionRequestResult.ShouldShowRationale -> showNearbyApiPermissionRationaleDialog()
-            PermissionRequestResult.PermissionDenied -> showNearbyApiPermissionDeniedDialog()
-            PermissionRequestResult.Error -> requestNearbyApiPermission()
+            PermissionRequestResult.ShouldShowRationale -> showDiscoveryPermissionRationaleDialog()
+            PermissionRequestResult.PermissionDenied -> showDiscoveryPermissionDeniedDialog()
+            PermissionRequestResult.Error -> requestDiscoveryPermission()
         }
     }
 
-    private fun showNearbyApiPermissionRationaleDialog() {
+    private fun showDiscoveryPermissionRationaleDialog() {
         // The user denied the permission but didn't tick "Never ask again"
 
         AlertDialog.Builder(this)
                 .setTitle(getString(R.string.music_box_discovery_nearby_api_permission_rationale_dialog_title))
                 .setMessage(getString(R.string.music_box_discovery_nearby_api_permission_rationale_dialog_message))
                 .setPositiveButton(getString(R.string.music_box_discovery_nearby_api_permission_rationale_dialog_positive_button_ask_again)) { _, _ ->
-                    requestNearbyApiPermission()
+                    requestDiscoveryPermission()
                 }
                 .show()
     }
 
-    private fun showNearbyApiPermissionDeniedDialog() {
+    private fun showDiscoveryPermissionDeniedDialog() {
         // The user denied the permission AND ticked "Never ask again"
 
         AlertDialog.Builder(this)
