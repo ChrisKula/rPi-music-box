@@ -4,7 +4,13 @@
     <application android:theme="@style/Theme.Application">
         <activity
             android:name=".ui.InstrumentPlayerActivity"
-            android:theme="@style/Theme.InstrumentPlayer" />
+            android:theme="@style/Theme.InstrumentPlayer">
+            <intent-filter>
+                <!-- Be sure action name is the same as in Actions.kt -->
+                <action android:name="action.instrument_player.open" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

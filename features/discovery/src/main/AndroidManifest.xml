@@ -2,7 +2,15 @@
     package="rpimusicbox.features.discovery">
 
     <application android:theme="@style/Theme.Application">
-        <activity android:name=".ui.MusicBoxDiscoveryActivity" />
+        <activity
+            android:name=".ui.MusicBoxDiscoveryActivity"
+            android:theme="@style/Theme.MusicBoxDiscovery">
+            <intent-filter>
+                <!-- Be sure action name is the same as in Actions.kt in `actions` module -->
+                <action android:name="action.discovery.open" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
