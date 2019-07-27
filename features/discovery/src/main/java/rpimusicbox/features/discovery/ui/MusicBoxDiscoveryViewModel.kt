@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import rpimusicbox.core.actions.instrumentplayer.MusicBoxArgs
 import rpimusicbox.features.discovery.DISCOVERY_PERMISSION
 import rpimusicbox.features.discovery.models.MusicBox
+import rpimusicbox.features.discovery.navigation.MusicBoxDiscoveryNavigation
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.*
 import rpimusicbox.features.discovery.usecase.DiscoveryUsecase
 import rpimusicbox.features.discovery.usecase.MusicBoxDiscoveryEvent
@@ -31,15 +33,13 @@ class MusicBoxDiscoveryViewModel(private val discoveryUsecase: DiscoveryUsecase)
     val permissionRequestLiveData: LiveData<String>
         get() = _permissionRequestLiveData
 
-    // TODO Handle navigation
-//    private val _navigationLiveData = SingleLiveEvent<MusicBoxDiscoveryNavigation>()
+    private val _navigationLiveData: MutableLiveData<MusicBoxDiscoveryNavigation> = SingleLiveEvent()
 
     /**
      * Emits events related to navigation from this View
      */
-//    val navigationLiveData: LiveData<MusicBoxDiscoveryNavigation>
-//    val navigationLiveData: LiveData<MusicBoxDiscoveryNavigation>
-//        get() = _navigationLiveData
+    val navigationLiveData: LiveData<MusicBoxDiscoveryNavigation>
+        get() = _navigationLiveData
 
     private var observeEndpointDiscoveryDisposable: Disposable? = null
 
@@ -75,8 +75,7 @@ class MusicBoxDiscoveryViewModel(private val discoveryUsecase: DiscoveryUsecase)
 
     fun onConnectToMusicBoxButtonClicked() {
         foundMusicBox?.let {
-            // TODO Handle navigation
-//            _navigationLiveData.value = MusicBoxDiscoveryNavigation.NavigateToInstrumentPlayer(it)
+            _navigationLiveData.value = MusicBoxDiscoveryNavigation.NavigateToInstrumentPlayer(it.toMusicBoxArgs())
         }
     }
 
@@ -121,5 +120,9 @@ class MusicBoxDiscoveryViewModel(private val discoveryUsecase: DiscoveryUsecase)
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return MusicBoxDiscoveryViewModel(discoveryUsecase) as T
         }
+    }
+
+    private fun MusicBox.toMusicBoxArgs(): MusicBoxArgs {
+        return MusicBoxArgs(id, name, serviceId)
     }
 }

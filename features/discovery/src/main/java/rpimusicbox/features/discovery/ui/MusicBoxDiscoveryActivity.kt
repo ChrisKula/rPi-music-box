@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import dagger.android.AndroidInjection
+import rpimusicbox.core.actions.Actions
 import rpimusicbox.features.discovery.DISCOVERY_PERMISSION
 import rpimusicbox.features.discovery.R
+import rpimusicbox.features.discovery.navigation.MusicBoxDiscoveryNavigation
 import rpimusicbox.features.discovery.ui.MusicBoxDiscoveryState.*
 import rpimusicbox.features.discovery.ui.discovering.DiscoveringMusicBoxFragmentDirections
 import rpimusicbox.libraries.androidcommons.extensions.goToAppSettings
@@ -83,14 +85,13 @@ class MusicBoxDiscoveryActivity : AppCompatActivity() {
             }
         })
 
-        // TODO Handle inter-module navigation
-//        viewModel.navigationLiveData.observe(this, Observer {
-//            when (it) {
-//                is MusicBoxDiscoveryNavigation.NavigateToInstrumentPlayer -> {
-//                    startActivity(InstrumentPlayerActivity.newIntent(this, it.musicBox))
-//                }
-//            }
-//        })
+        viewModel.navigationLiveData.observe(this, Observer {
+            when (it) {
+                is MusicBoxDiscoveryNavigation.NavigateToInstrumentPlayer -> {
+                    startActivity(Actions.openInstrumentPlayerIntent(it.musicBoxArgs))
+                }
+            }
+        })
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

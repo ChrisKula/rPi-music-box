@@ -17,6 +17,7 @@ androidExtensions {
 }
 
 dependencies {
+    implementation(project(":core:actions"))
     implementation(project(":core:design"))
 
     implementation(project(":libraries:commons"))
