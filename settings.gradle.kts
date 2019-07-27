@@ -1,5 +1,6 @@
 include(":rPi-music-box-remote")
 
+include(":core:actions")
 include(":core:design")
 
 include(":features:discovery")
